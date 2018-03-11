@@ -1,0 +1,411 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02B3C264629A0C2B3C83AB15 /* Pods_RoadGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68193BFBBD18CADC2C9577C /* Pods_RoadGraph.framework */; };
+		8A8F1C862054846900FBF980 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C852054846900FBF980 /* AppDelegate.swift */; };
+		8A8F1C882054846900FBF980 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C872054846900FBF980 /* ViewController.swift */; };
+		8A8F1C8D2054846A00FBF980 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A8F1C8B2054846A00FBF980 /* Main.storyboard */; };
+		8A8F1C962054848700FBF980 /* OSM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C952054848700FBF980 /* OSM.swift */; };
+		8A8F1C982054848D00FBF980 /* OSMNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C972054848D00FBF980 /* OSMNode.swift */; };
+		8A8F1C9A2054849300FBF980 /* OSMTaggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C992054849300FBF980 /* OSMTaggable.swift */; };
+		8A8F1C9C2054849800FBF980 /* OSMWay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C9B2054849700FBF980 /* OSMWay.swift */; };
+		8A8F1CA02054A4F600FBF980 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C9F2054A4F600FBF980 /* Coordinate.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		53BB601C38F75DEF53ED54EF /* Pods-RoadGraph.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadGraph.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadGraph/Pods-RoadGraph.release.xcconfig"; sourceTree = "<group>"; };
+		8A8F1C822054846900FBF980 /* RoadGraph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadGraph.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A8F1C852054846900FBF980 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8A8F1C872054846900FBF980 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8A8F1C8C2054846A00FBF980 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8A8F1C8E2054846A00FBF980 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A8F1C8F2054846A00FBF980 /* RoadGraph.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RoadGraph.entitlements; sourceTree = "<group>"; };
+		8A8F1C952054848700FBF980 /* OSM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSM.swift; sourceTree = "<group>"; };
+		8A8F1C972054848D00FBF980 /* OSMNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSMNode.swift; sourceTree = "<group>"; };
+		8A8F1C992054849300FBF980 /* OSMTaggable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSMTaggable.swift; sourceTree = "<group>"; };
+		8A8F1C9B2054849700FBF980 /* OSMWay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSMWay.swift; sourceTree = "<group>"; };
+		8A8F1C9F2054A4F600FBF980 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		A68193BFBBD18CADC2C9577C /* Pods_RoadGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoadGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E93BAB0FC8F3D036FF2B3D2E /* Pods-RoadGraph.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadGraph.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadGraph/Pods-RoadGraph.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8A8F1C7F2054846900FBF980 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02B3C264629A0C2B3C83AB15 /* Pods_RoadGraph.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2E05ACE40EF95F44509D1E1E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A68193BFBBD18CADC2C9577C /* Pods_RoadGraph.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8A8F1C792054846900FBF980 = {
+			isa = PBXGroup;
+			children = (
+				8A8F1C842054846900FBF980 /* RoadGraph */,
+				8A8F1C832054846900FBF980 /* Products */,
+				F4286C1E814D31D88EA69CA3 /* Pods */,
+				2E05ACE40EF95F44509D1E1E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8A8F1C832054846900FBF980 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8A8F1C822054846900FBF980 /* RoadGraph.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8A8F1C842054846900FBF980 /* RoadGraph */ = {
+			isa = PBXGroup;
+			children = (
+				8A8F1C852054846900FBF980 /* AppDelegate.swift */,
+				8A8F1C952054848700FBF980 /* OSM.swift */,
+				8A8F1C992054849300FBF980 /* OSMTaggable.swift */,
+				8A8F1C9B2054849700FBF980 /* OSMWay.swift */,
+				8A8F1C972054848D00FBF980 /* OSMNode.swift */,
+				8A8F1C9F2054A4F600FBF980 /* Coordinate.swift */,
+				8A8F1C872054846900FBF980 /* ViewController.swift */,
+				8A8F1C8B2054846A00FBF980 /* Main.storyboard */,
+				8A8F1C8E2054846A00FBF980 /* Info.plist */,
+				8A8F1C8F2054846A00FBF980 /* RoadGraph.entitlements */,
+			);
+			path = RoadGraph;
+			sourceTree = "<group>";
+		};
+		F4286C1E814D31D88EA69CA3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E93BAB0FC8F3D036FF2B3D2E /* Pods-RoadGraph.debug.xcconfig */,
+				53BB601C38F75DEF53ED54EF /* Pods-RoadGraph.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8A8F1C812054846900FBF980 /* RoadGraph */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A8F1C922054846A00FBF980 /* Build configuration list for PBXNativeTarget "RoadGraph" */;
+			buildPhases = (
+				EA3ED4D649A4D8B4243043F3 /* [CP] Check Pods Manifest.lock */,
+				8A8F1C7E2054846900FBF980 /* Sources */,
+				8A8F1C7F2054846900FBF980 /* Frameworks */,
+				8A8F1C802054846900FBF980 /* Resources */,
+				E05B0F5059F48C226C551661 /* [CP] Embed Pods Frameworks */,
+				E5C4216540DE3A98B39BF461 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RoadGraph;
+			productName = RoadGraph;
+			productReference = 8A8F1C822054846900FBF980 /* RoadGraph.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8A8F1C7A2054846900FBF980 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Алексей";
+				TargetAttributes = {
+					8A8F1C812054846900FBF980 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 8A8F1C7D2054846900FBF980 /* Build configuration list for PBXProject "RoadGraph" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8A8F1C792054846900FBF980;
+			productRefGroup = 8A8F1C832054846900FBF980 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8A8F1C812054846900FBF980 /* RoadGraph */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8A8F1C802054846900FBF980 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A8F1C8D2054846A00FBF980 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E05B0F5059F48C226C551661 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RoadGraph/Pods-RoadGraph-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5C4216540DE3A98B39BF461 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RoadGraph/Pods-RoadGraph-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA3ED4D649A4D8B4243043F3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8A8F1C7E2054846900FBF980 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A8F1C962054848700FBF980 /* OSM.swift in Sources */,
+				8A8F1C982054848D00FBF980 /* OSMNode.swift in Sources */,
+				8A8F1CA02054A4F600FBF980 /* Coordinate.swift in Sources */,
+				8A8F1C882054846900FBF980 /* ViewController.swift in Sources */,
+				8A8F1C862054846900FBF980 /* AppDelegate.swift in Sources */,
+				8A8F1C9A2054849300FBF980 /* OSMTaggable.swift in Sources */,
+				8A8F1C9C2054849800FBF980 /* OSMWay.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8A8F1C8B2054846A00FBF980 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8A8F1C8C2054846A00FBF980 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8A8F1C902054846A00FBF980 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8A8F1C912054846A00FBF980 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		8A8F1C932054846A00FBF980 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E93BAB0FC8F3D036FF2B3D2E /* Pods-RoadGraph.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RoadGraph/RoadGraph.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = GLQY2SH5YN;
+				INFOPLIST_FILE = RoadGraph/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Alexey.RoadGraph;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		8A8F1C942054846A00FBF980 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53BB601C38F75DEF53ED54EF /* Pods-RoadGraph.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RoadGraph/RoadGraph.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = GLQY2SH5YN;
+				INFOPLIST_FILE = RoadGraph/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Alexey.RoadGraph;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8A8F1C7D2054846900FBF980 /* Build configuration list for PBXProject "RoadGraph" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A8F1C902054846A00FBF980 /* Debug */,
+				8A8F1C912054846A00FBF980 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A8F1C922054846A00FBF980 /* Build configuration list for PBXNativeTarget "RoadGraph" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A8F1C932054846A00FBF980 /* Debug */,
+				8A8F1C942054846A00FBF980 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8A8F1C7A2054846900FBF980 /* Project object */;
+}
