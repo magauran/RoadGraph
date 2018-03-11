@@ -9,7 +9,6 @@ import Foundation
 import SWXMLHash
 
 public class OSM {
-    
     public private(set) var nodes = Dictionary<String, OSMNode>()
     public private(set) var ways = Set<OSMWay>()
     
@@ -18,21 +17,31 @@ public class OSM {
         for xmlNode in xmlNodes.all {
             let node = try OSMNode(xml: xmlNode, osm: self)
             self.nodes[node.id] = node
-            print(node.location)
+        }
+        
+        DispatchQueue.main.async {
+            print(self.nodes.count)
         }
         
         for xmlWay in xml["osm"]["way"].all {
             let way = try OSMWay(xml: xmlWay, osm: self)
-
+            
             let allowedHighwayValues = ["pedestrian", "path", "footway", "steps"]
             if let highwayValue = way.tags["highway"], way.tags["building"] == nil && allowedHighwayValues.contains(highwayValue) {
                 self.ways.insert(way)
             }
         }
-
-        self.nodes = self.nodes.filter({ (id, node) -> Bool in
-            return !node.ways.isEmpty
-        })
+        
+        DispatchQueue.main.async {
+            print(self.ways.count)
+        }
+        
+//        self.nodes = self.nodes.filter({ (id, node) -> Bool in
+//            return !node.ways.isEmpty
+//        })
+        DispatchQueue.main.async {
+            print("osm init complete")
+        }
     }
     
     public func nodes(near startLocation: Coordinate, radius searchRadius: Int = 50) -> [OSMNode] {

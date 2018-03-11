@@ -6,5 +6,6 @@ target 'RoadGraph' do
   use_frameworks!
 
   pod 'SWXMLHash', '~> 4.0.0'
+  pod 'CSV.swift', '~> 2.1.0'
 
 end

@@ -15,7 +15,22 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         let file = NSDataAsset(name: NSDataAsset.Name.init(rawValue: "tagil"))!
         let xml = SWXMLHash.parse(file.data)
-        if let _ = try? OSM.init(xml: xml) {}
+        DispatchQueue.global().async {
+            if let osm = try? OSM.init(xml: xml) {
+                DispatchQueue.main.async {
+                    print("graph init")
+                }
+                
+                let graph = RoadGraph(osm: osm)
+                
+            } else {
+                DispatchQueue.main.async {
+                    print("fail")
+                }
+            }
+        }
+        
+        
     }
 
 }

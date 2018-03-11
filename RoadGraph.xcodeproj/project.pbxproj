@@ -16,6 +16,8 @@
 		8A8F1C9A2054849300FBF980 /* OSMTaggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C992054849300FBF980 /* OSMTaggable.swift */; };
 		8A8F1C9C2054849800FBF980 /* OSMWay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C9B2054849700FBF980 /* OSMWay.swift */; };
 		8A8F1CA02054A4F600FBF980 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C9F2054A4F600FBF980 /* Coordinate.swift */; };
+		8A8F1CA620553B6900FBF980 /* RoadGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1CA520553B6900FBF980 /* RoadGraph.swift */; };
+		8A8F1CA820553C4200FBF980 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1CA720553C4200FBF980 /* Edge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		8A8F1C992054849300FBF980 /* OSMTaggable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSMTaggable.swift; sourceTree = "<group>"; };
 		8A8F1C9B2054849700FBF980 /* OSMWay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSMWay.swift; sourceTree = "<group>"; };
 		8A8F1C9F2054A4F600FBF980 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		8A8F1CA520553B6900FBF980 /* RoadGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadGraph.swift; sourceTree = "<group>"; };
+		8A8F1CA720553C4200FBF980 /* Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
 		A68193BFBBD18CADC2C9577C /* Pods_RoadGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoadGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93BAB0FC8F3D036FF2B3D2E /* Pods-RoadGraph.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadGraph.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadGraph/Pods-RoadGraph.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,7 +84,9 @@
 				8A8F1C952054848700FBF980 /* OSM.swift */,
 				8A8F1C992054849300FBF980 /* OSMTaggable.swift */,
 				8A8F1C9B2054849700FBF980 /* OSMWay.swift */,
+				8A8F1CA520553B6900FBF980 /* RoadGraph.swift */,
 				8A8F1C972054848D00FBF980 /* OSMNode.swift */,
+				8A8F1CA720553C4200FBF980 /* Edge.swift */,
 				8A8F1C9F2054A4F600FBF980 /* Coordinate.swift */,
 				8A8F1C872054846900FBF980 /* ViewController.swift */,
 				8A8F1C8B2054846A00FBF980 /* Main.storyboard */,
@@ -222,11 +228,13 @@
 			files = (
 				8A8F1C962054848700FBF980 /* OSM.swift in Sources */,
 				8A8F1C982054848D00FBF980 /* OSMNode.swift in Sources */,
+				8A8F1CA620553B6900FBF980 /* RoadGraph.swift in Sources */,
 				8A8F1CA02054A4F600FBF980 /* Coordinate.swift in Sources */,
 				8A8F1C882054846900FBF980 /* ViewController.swift in Sources */,
 				8A8F1C862054846900FBF980 /* AppDelegate.swift in Sources */,
 				8A8F1C9A2054849300FBF980 /* OSMTaggable.swift in Sources */,
 				8A8F1C9C2054849800FBF980 /* OSMWay.swift in Sources */,
+				8A8F1CA820553C4200FBF980 /* Edge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +364,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RoadGraph/RoadGraph.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = GLQY2SH5YN;
@@ -363,6 +372,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Alexey.RoadGraph;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -373,6 +383,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RoadGraph/RoadGraph.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = GLQY2SH5YN;
@@ -380,6 +391,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Alexey.RoadGraph;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
