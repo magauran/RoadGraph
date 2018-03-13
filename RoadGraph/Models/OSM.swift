@@ -9,8 +9,10 @@ import Foundation
 import SWXMLHash
 
 public class OSM {
+    
     public private(set) var nodes = Dictionary<String, OSMNode>()
     public private(set) var ways = Set<OSMWay>()
+    public private(set) var bounds = OSMBounds()
     
     public init(xml: XMLIndexer) throws {
         let xmlNodes = xml["osm"]["node"]
@@ -27,7 +29,7 @@ public class OSM {
             let way = try OSMWay(xml: xmlWay, osm: self)
             
             let allowedHighwayValues = ["pedestrian", "path", "footway", "steps"]
-            if let highwayValue = way.tags["highway"], way.tags["building"] == nil && allowedHighwayValues.contains(highwayValue) {
+            if let highwayValue = way.tags["highway"], way.tags["building"] == nil /*&& allowedHighwayValues.contains(highwayValue)*/ {
                 self.ways.insert(way)
             }
         }
@@ -36,9 +38,9 @@ public class OSM {
             print(self.ways.count)
         }
         
-//        self.nodes = self.nodes.filter({ (id, node) -> Bool in
-//            return !node.ways.isEmpty
-//        })
+        let xmlBounds = xml["osm"]["bounds"]
+        self.bounds = try OSMBounds(xml: xmlBounds)
+
         DispatchQueue.main.async {
             print("osm init complete")
         }

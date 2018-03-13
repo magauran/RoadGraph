@@ -24,6 +24,13 @@ public struct Coordinate: Encodable {
         return CGPoint(x: x, y: y)
     }
     
+    public var geographicalCoordinate: CGPoint {
+        let x = self.longitude
+        let y = self.latitude
+        return CGPoint(x: x, y: y)
+    }
+
+    
     private func radians(degrees: Double) -> Double {
         return degrees * Double.pi / 180.0
     }
