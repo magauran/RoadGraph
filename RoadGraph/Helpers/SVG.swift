@@ -16,7 +16,7 @@ class SVG {
     
     init(rect: CGRect) {
         self.sourceRect = rect
-        self.imageRect = CGRect(x: 0, y: 0, width: 1000, height: 600)
+        self.imageRect = CGRect(x: 0.0, y: 0.0, width: 1000, height: 1000 * rect.height / rect.width)
         self.svgString = ""
     }
     

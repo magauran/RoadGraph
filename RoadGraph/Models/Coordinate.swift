@@ -19,8 +19,10 @@ public struct Coordinate: Encodable {
     }
     
     public var cartesianCoordinate: CGPoint {
-        let x = Constants.earthRadius * longitude
-        let y = Constants.earthRadius * log(tan(Double.pi / 4 + latitude / 2))
+        let latitudeInRadians = latitude / 180 * Double.pi
+        let longitudeInRadians = longitude / 180 * Double.pi
+        let x = Constants.earthRadius * longitudeInRadians
+        let y = Constants.earthRadius * log(tan(Double.pi / 4 + latitudeInRadians / 2))
         return CGPoint(x: x, y: y)
     }
     
