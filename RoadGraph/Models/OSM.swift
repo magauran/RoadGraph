@@ -28,8 +28,8 @@ public class OSM {
         for xmlWay in xml["osm"]["way"].all {
             let way = try OSMWay(xml: xmlWay, osm: self)
             
-            let allowedHighwayValues = ["pedestrian", "path", "footway", "steps"]
-            if let highwayValue = way.tags["highway"], way.tags["building"] == nil /*&& allowedHighwayValues.contains(highwayValue)*/ {
+            let allowedHighwayValues = ["motorway", "motorway_link", "trunk", "trunk_link", "primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link", "unclassified", "road", "residential"]
+            if let highwayValue = way.tags["highway"], /*way.tags["building"] == nil && */allowedHighwayValues.contains(highwayValue) {
                 self.ways.insert(way)
             }
         }
