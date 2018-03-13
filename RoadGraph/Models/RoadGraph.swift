@@ -13,29 +13,18 @@ import CSV
 class RoadGraph {
     
     private(set) var edgeList = Array<Edge>()
+    private(set) var nodes = Dictionary<String, OSMNode>()
+    
     public let bounds: OSMBounds
     
     init(osm: OSM) {
         self.bounds = osm.bounds
+        
         createEdgeList(map: osm)
+        CSV.writeToFileWith(path: "edgeList.csv", edgeList: self.edgeList)
         
-        /*
-        let fileManager = FileManager.default
-        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let csvFile = documentDirectory.appendingPathComponent("edgeList.csv")
-        
-        if !fileManager.fileExists(atPath: csvFile.path) {
-            
-            fileManager.createFile(atPath: csvFile.path, contents: nil, attributes: nil)
-            
-            let stream = OutputStream(toFileAtPath: csvFile.path, append: false)!
-            let csv = try! CSVWriter(stream: stream)
-            
-            for edge in edgeList {
-                try! csv.write(row: [edge.from.id, edge.to.id])
-            }
-        }
- */
+        self.nodes = osm.nodes
+        CSV.writeAdjacencyListToFileWith(path: "adjacencyList", nodes: self.nodes)
         
 //        let istream = InputStream(fileAtPath: csvFile.path)!
 //        let csv = try! CSVReader(stream: istream)
@@ -52,4 +41,6 @@ class RoadGraph {
             }
         }
     }
+    
+    
 }
