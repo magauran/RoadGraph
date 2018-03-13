@@ -22,7 +22,6 @@ class RoadGraph {
         
         if !fileManager.fileExists(atPath: csvFile.path) {
             
-            print("create edgeList.csv")
             fileManager.createFile(atPath: csvFile.path, contents: nil, attributes: nil)
             
             let stream = OutputStream(toFileAtPath: csvFile.path, append: false)!

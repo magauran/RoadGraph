@@ -20,6 +20,8 @@
 		8A8F1CA820553C4200FBF980 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1CA720553C4200FBF980 /* Edge.swift */; };
 		8AC22B61205708C50047CE72 /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC22B60205708C50047CE72 /* SVG.swift */; };
 		8AC22B6320571D930047CE72 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC22B6220571D930047CE72 /* Constants.swift */; };
+		8AC22B692057CF980047CE72 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC22B682057CF980047CE72 /* CSV.swift */; };
+		8AC22B6C2057D0F70047CE72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AC22B6B2057D0F70047CE72 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		8A8F1CA720553C4200FBF980 /* Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
 		8AC22B60205708C50047CE72 /* SVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVG.swift; sourceTree = "<group>"; };
 		8AC22B6220571D930047CE72 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8AC22B682057CF980047CE72 /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
+		8AC22B6B2057D0F70047CE72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A68193BFBBD18CADC2C9577C /* Pods_RoadGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoadGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93BAB0FC8F3D036FF2B3D2E /* Pods-RoadGraph.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadGraph.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadGraph/Pods-RoadGraph.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,22 +88,64 @@
 		8A8F1C842054846900FBF980 /* RoadGraph */ = {
 			isa = PBXGroup;
 			children = (
-				8A8F1C852054846900FBF980 /* AppDelegate.swift */,
+				8AC22B672057CF360047CE72 /* Application */,
+				8AC22B642057CD430047CE72 /* Models */,
+				8AC22B662057CEE60047CE72 /* Controllers */,
+				8AC22B652057CEDC0047CE72 /* Helpers */,
+			);
+			path = RoadGraph;
+			sourceTree = "<group>";
+		};
+		8AC22B642057CD430047CE72 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8A8F1CA520553B6900FBF980 /* RoadGraph.swift */,
 				8A8F1C952054848700FBF980 /* OSM.swift */,
 				8A8F1C992054849300FBF980 /* OSMTaggable.swift */,
 				8A8F1C9B2054849700FBF980 /* OSMWay.swift */,
-				8AC22B60205708C50047CE72 /* SVG.swift */,
-				8A8F1CA520553B6900FBF980 /* RoadGraph.swift */,
 				8A8F1C972054848D00FBF980 /* OSMNode.swift */,
 				8A8F1CA720553C4200FBF980 /* Edge.swift */,
 				8A8F1C9F2054A4F600FBF980 /* Coordinate.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8AC22B652057CEDC0047CE72 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8AC22B60205708C50047CE72 /* SVG.swift */,
+				8AC22B682057CF980047CE72 /* CSV.swift */,
 				8AC22B6220571D930047CE72 /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8AC22B662057CEE60047CE72 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				8A8F1C872054846900FBF980 /* ViewController.swift */,
-				8A8F1C8B2054846A00FBF980 /* Main.storyboard */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8AC22B672057CF360047CE72 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				8AC22B6A2057D0C10047CE72 /* Resources */,
+				8A8F1C852054846900FBF980 /* AppDelegate.swift */,
 				8A8F1C8E2054846A00FBF980 /* Info.plist */,
 				8A8F1C8F2054846A00FBF980 /* RoadGraph.entitlements */,
 			);
-			path = RoadGraph;
+			path = Application;
+			sourceTree = "<group>";
+		};
+		8AC22B6A2057D0C10047CE72 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8A8F1C8B2054846A00FBF980 /* Main.storyboard */,
+				8AC22B6B2057D0F70047CE72 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		F4286C1E814D31D88EA69CA3 /* Pods */ = {
@@ -173,6 +219,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AC22B6C2057D0F70047CE72 /* Assets.xcassets in Resources */,
 				8A8F1C8D2054846A00FBF980 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +287,7 @@
 				8A8F1CA02054A4F600FBF980 /* Coordinate.swift in Sources */,
 				8A8F1C882054846900FBF980 /* ViewController.swift in Sources */,
 				8A8F1C862054846900FBF980 /* AppDelegate.swift in Sources */,
+				8AC22B692057CF980047CE72 /* CSV.swift in Sources */,
 				8A8F1C9A2054849300FBF980 /* OSMTaggable.swift in Sources */,
 				8A8F1C9C2054849800FBF980 /* OSMWay.swift in Sources */,
 				8A8F1CA820553C4200FBF980 /* Edge.swift in Sources */,
@@ -370,13 +418,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E93BAB0FC8F3D036FF2B3D2E /* Pods-RoadGraph.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = RoadGraph/RoadGraph.entitlements;
+				CODE_SIGN_ENTITLEMENTS = RoadGraph/Application/RoadGraph.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = GLQY2SH5YN;
-				INFOPLIST_FILE = RoadGraph/Info.plist;
+				INFOPLIST_FILE = RoadGraph/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Alexey.RoadGraph;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -389,13 +436,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 53BB601C38F75DEF53ED54EF /* Pods-RoadGraph.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = RoadGraph/RoadGraph.entitlements;
+				CODE_SIGN_ENTITLEMENTS = RoadGraph/Application/RoadGraph.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = GLQY2SH5YN;
-				INFOPLIST_FILE = RoadGraph/Info.plist;
+				INFOPLIST_FILE = RoadGraph/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Alexey.RoadGraph;
 				PRODUCT_NAME = "$(TARGET_NAME)";

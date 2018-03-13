@@ -84,12 +84,6 @@ public class OSMNode: OSMTaggable {
     
 }
 
-extension OSMNode: CustomStringConvertible {
-    public var description: String {
-        return "Node{id: \(self.id), location: \(self.location)}"
-    }
-}
-
 extension OSMNode: Hashable {
     public var hashValue: Int {
         return self.id.hashValue

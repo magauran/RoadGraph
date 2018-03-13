@@ -38,8 +38,13 @@ public class OSMWay: OSMTaggable {
         }
         self.nodes = nodes
     }
-  
     
+}
+
+extension OSMWay: Hashable {
+    public var hashValue: Int {
+        return self.id.hashValue
+    }
 }
 
 extension OSMWay: Equatable {
@@ -48,14 +53,3 @@ extension OSMWay: Equatable {
     }
 }
 
-extension OSMWay: CustomStringConvertible {
-    public var description: String {
-        return "Way{id: \(id)}"
-    }
-}
-
-extension OSMWay: Hashable {
-    public var hashValue: Int {
-        return self.id.hashValue
-    }
-}
