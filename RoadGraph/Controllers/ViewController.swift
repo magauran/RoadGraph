@@ -8,15 +8,18 @@
 
 import Cocoa
 import SWXMLHash
+import WebKit
 
 class ViewController: NSViewController {
+    
+    
+    @IBOutlet weak var webView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createGraph()
     }
 
-    
     func createGraph() {
         let file = NSDataAsset(name: NSDataAsset.Name.init(rawValue: "tagil"))!
         let xml = SWXMLHash.parse(file.data)
@@ -29,6 +32,17 @@ class ViewController: NSViewController {
                 let graph = RoadGraph(osm: osm)
                 let controller = GraphController(graph: graph)
                 controller.visualize()
+                
+                let fileManager = FileManager.default
+                let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                let svgURL = documentDirectory.appendingPathComponent("graph.html")
+                let htmlString = try! String.init(contentsOf: svgURL)
+                
+                DispatchQueue.main.async {
+                    self.webView.loadHTMLString(htmlString, baseURL: nil)
+                    self.webView.allowsMagnification = true
+                    self.webView.magnification = 7.0
+                }
                 
             } else {
                 DispatchQueue.main.async {

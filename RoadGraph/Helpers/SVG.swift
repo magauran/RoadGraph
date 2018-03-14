@@ -52,7 +52,7 @@ class SVG {
     public func drawLine(from p1: CGPoint, to p2: CGPoint, width: Double = 0.5) {
         let point1 = convertCoordinate(initialPoint: p1, initialRect: sourceRect, resultRect: imageRect)
         let point2 = convertCoordinate(initialPoint: p2, initialRect: sourceRect, resultRect: imageRect)
-        self.svgString += "<line x1=\"\(point1.x)\" y1=\"\(point1.y)\" x2=\"\(point2.x)\" y2=\"\(point2.y)\" style=\"stroke:rgb(0,0,0);stroke-width:\(width)\" />\n"
+        self.svgString += "<line x1=\"\(point1.x)\" y1=\"\(point1.y)\" x2=\"\(point2.x)\" y2=\"\(point2.y)\" style=\"stroke:#FD8E6F; stroke-width:\(width)\" />\n"
     }
     
     public func drawCircle(center: CGPoint, radius: CGFloat = 5) {
