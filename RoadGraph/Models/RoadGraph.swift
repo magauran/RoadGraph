@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import CSV
-
 
 class RoadGraph {
     
@@ -21,26 +19,39 @@ class RoadGraph {
         self.bounds = osm.bounds
         
         createEdgeList(map: osm)
-        CSV.writeToFileWith(path: "edgeList.csv", edgeList: self.edgeList)
         
         self.nodes = osm.nodes
-        CSV.writeAdjacencyListToFileWith(path: "adjacencyList", nodes: self.nodes)
         
-//        let istream = InputStream(fileAtPath: csvFile.path)!
-//        let csv = try! CSVReader(stream: istream)
-//        while let row = csv.next() {
-//            print("\(row)")
-//        }
     }
     
     func createEdgeList(map: OSM) {
         for way in map.ways {
             for i in 0..<way.nodes.count - 1 {
-                let edge = Edge(from: way.nodes[i], to: way.nodes[i + 1])
+                let edge = Edge(from: way.nodes[i], to: way.nodes[i + 1], width: self.getEdgeWidth(type: way.tags["highway"]!))
                 self.edgeList.append(edge)
             }
         }
     }
     
+    func getEdgeWidth(type: String) -> Double {
+      
+        switch type {
+        case "motorway", "motorway":
+            return 0.8
+        case "trunk", "trunk_link":
+            return 0.7
+        case "primary", "primary_link":
+            return 0.6
+        case "secondary", "secondary_link":
+            return 0.5
+        case "tertiary", "tertiary_link":
+            return 0.4
+        case "unclassified":
+            return 0.3
+            
+        default:
+            return 0.2
+        }
+    }
     
 }

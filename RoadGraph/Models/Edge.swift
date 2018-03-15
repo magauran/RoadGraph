@@ -12,5 +12,6 @@ public struct Edge {
     
     var from: OSMNode
     var to: OSMNode
+    var width: Double
     
 }

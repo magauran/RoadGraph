@@ -11,7 +11,7 @@ import CSV
 
 class CSV {
     
-    class func writeToFileWith(path: String, edgeList: Array<Edge>) {
+    class func writeEdgeListToFileWith(path: String, edgeList: Array<Edge>) {
         
         let csv = try! createCSVWriter(path: path)
             
@@ -23,24 +23,25 @@ class CSV {
     
     class func writeAdjacencyListToFileWith(path: String, nodes: Dictionary<String, OSMNode>) {
         
-        let csv = try! createCSVWriter(path: path)
-        
-        for node in nodes {
-            if node.value.adjacent.count > 0 {
-                try! csv.write(row: [node.key] + Array(node.value.adjacent.map {$0.id}))
+        var str = ""
+        for node in nodes.values {
+            if !node.adjacent.isEmpty {
+                str += node.id + "," + Array(node.adjacent.map {$0.id}).joined(separator: ",") + "\n"
             }
+        }
+        
+        let csvUrl = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources/adjacencyList.csv")
+        
+        do {
+            try str.write(to: csvUrl, atomically: true, encoding: .utf8)
+        } catch {
+            print("Failed writing to URL: \(csvUrl), Error: " + error.localizedDescription)
         }
         
     }
  
     private class func createCSVWriter(path: String) throws -> CSVWriter  {
-        let fileManager = FileManager.default
-        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let csvFile = documentDirectory.appendingPathComponent(path)
-        
-        if !fileManager.fileExists(atPath: csvFile.path) {
-            fileManager.createFile(atPath: csvFile.path, contents: nil, attributes: nil)
-        }
+        let csvFile = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources/\(path)")
         
         let stream = OutputStream(toFileAtPath: csvFile.path, append: false)!
         let csv = try CSVWriter(stream: stream)

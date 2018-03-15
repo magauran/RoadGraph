@@ -17,8 +17,15 @@ class GraphController {
         print(graph.edgeList.count)
     }
     
+    public func saveAdjacencyList() {
+        CSV.writeAdjacencyListToFileWith(path: "adjacencyList.csv", nodes: self.graph.nodes)
+    }
+    
+    public func saveEdgeList() {
+        CSV.writeEdgeListToFileWith(path: "edgeList.csv", edgeList: self.graph.edgeList)
+    }
+    
     public func visualize() {
-        print("visualize")
         let point1 = Coordinate(latitude: self.graph.bounds.minLat, longitude: self.graph.bounds.minLon).cartesianCoordinate
         let point2 = Coordinate(latitude: self.graph.bounds.maxLat, longitude: self.graph.bounds.maxLon).cartesianCoordinate
         let sourceRect = CGRect(x: 0.0, y: 0.0,
@@ -31,7 +38,8 @@ class GraphController {
             svg.drawLine(from: CGPoint(x: startPoint.x - point1.x,
                                        y: sourceRect.height - startPoint.y + point1.y),
                          to: CGPoint(x: endPoint.x - point1.x,
-                                     y: sourceRect.height - endPoint.y + point1.y))
+                                     y: sourceRect.height - endPoint.y + point1.y),
+                         width: edge.width)
         }
         svg.saveSVGToHTMLFile()
     }

@@ -17,6 +17,7 @@ public class OSMWay: OSMTaggable {
     private(set) weak var osm: OSM?
     
     init(xml: XMLIndexer, osm: OSM) throws {
+        
         self.id = try xml.value(ofAttribute: "id")
         
         var tags = [String: String]()
@@ -34,6 +35,15 @@ public class OSMWay: OSMTaggable {
             let nodeID: String = try nodeRefTag.value(ofAttribute: "ref")
             if let node = osm.nodes[nodeID] {
                 nodes.append(node)
+            }
+        }
+        
+        for i in 0..<nodes.count {
+            if i != 0 {
+                nodes[i].adjacent.insert(nodes[i - 1])
+            }
+            if i != nodes.count - 1 {
+                nodes[i].adjacent.insert(nodes[i + 1])
             }
         }
         self.nodes = nodes

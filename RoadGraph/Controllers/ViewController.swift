@@ -25,24 +25,27 @@ class ViewController: NSViewController {
         let xml = SWXMLHash.parse(file.data)
         DispatchQueue.global().async {
             if let osm = try? OSM.init(xml: xml) {
-                DispatchQueue.main.async {
-                    print("graph init")
-                }
                 
                 let graph = RoadGraph(osm: osm)
                 let controller = GraphController(graph: graph)
-                controller.visualize()
                 
-                let fileManager = FileManager.default
-                let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                let svgURL = documentDirectory.appendingPathComponent("graph.html")
-                let htmlString = try! String.init(contentsOf: svgURL)
-                
-                DispatchQueue.main.async {
-                    self.webView.loadHTMLString(htmlString, baseURL: nil)
-                    self.webView.allowsMagnification = true
-                    self.webView.magnification = 7.0
+                DispatchQueue.global().async {
+                    controller.saveEdgeList()
                 }
+                
+                DispatchQueue.global().async {
+                    controller.visualize()
+                    let svgUrl = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources/graph.html")
+                    let htmlString = try! String.init(contentsOf: svgUrl)
+                    
+                    DispatchQueue.main.async {
+                        self.webView.loadHTMLString(htmlString, baseURL: nil)
+                        self.webView.allowsMagnification = true
+                        self.webView.magnification = 7.0
+                    }
+                }
+                
+                controller.saveAdjacencyList()
                 
             } else {
                 DispatchQueue.main.async {

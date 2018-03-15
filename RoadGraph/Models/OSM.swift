@@ -20,18 +20,23 @@ public class OSM {
             let node = try OSMNode(xml: xmlNode, osm: self)
             self.nodes[node.id] = node
         }
-        
-        DispatchQueue.main.async {
-            print(self.nodes.count)
-        }
-        
+       
         for xmlWay in xml["osm"]["way"].all {
             let way = try OSMWay(xml: xmlWay, osm: self)
             
-            let allowedHighwayValues = ["motorway", "motorway_link", "trunk", "trunk_link", "primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link", "unclassified", "road", "residential"]
-            if let highwayValue = way.tags["highway"], /*way.tags["building"] == nil && */allowedHighwayValues.contains(highwayValue) {
+            let allowedHighwayValues = ["motorway", "motorway_link", "trunk", "trunk_link", "primary", "primary_link", "secondary", "secondary_link", "tertiary", "tertiary_link", "unclassified", "road", "residential", "service", "living_street"]
+            if let highwayValue = way.tags["highway"], allowedHighwayValues.contains(highwayValue) {
+                for node in way.nodes {
+                    self.nodes[node.id]?.ways.insert(way)
+                }
                 self.ways.insert(way)
             }
+        }
+        
+        self.nodes = self.nodes.filter({ !$0.value.ways.isEmpty && !$0.value.adjacent.isEmpty })
+
+        DispatchQueue.main.async {
+            print(self.nodes.count)
         }
         
         DispatchQueue.main.async {
