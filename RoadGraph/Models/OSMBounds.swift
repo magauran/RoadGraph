@@ -30,4 +30,10 @@ public struct OSMBounds {
         self.maxLon = try xml.value(ofAttribute: "maxlon")
     }
     
+    public func contains(point: Coordinate) -> Bool {
+        if minLat ... maxLat ~= point.latitude && minLon ... maxLon ~= maxLon {
+            return true
+        }
+        return false
+    }
 }

@@ -51,7 +51,7 @@ class SVG {
         self.svgString += "<line x1=\"\(point1.x)\" y1=\"\(point1.y)\" x2=\"\(point2.x)\" y2=\"\(point2.y)\" style=\"stroke:#000050; stroke-width:\(width)\" />\n"
     }
     
-    public func drawCircle(center: CGPoint, radius: CGFloat = 5) {
+    public func drawCircle(center: CGPoint, radius: CGFloat = 2) {
         let centerPoint = convertCoordinate(initialPoint: center, initialRect: sourceRect, resultRect: imageRect)
         self.svgString += "<circle cx=\"\(centerPoint.x)\" cy=\"\(centerPoint.y)\" r=\"\(radius)\" fill=\"black\"/>\n"
     }
