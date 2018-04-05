@@ -22,16 +22,23 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var webView: WKWebView!
     
+    @IBOutlet weak var placesOutlineView: NSOutlineView!
+    
     var graph: RoadGraph!
     var places = [Coordinate]()
     var isGraphCreated = false
     var controller: GraphController!
+    
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createGraph()
     }
 
+    // MARK: - IBActions
+    
     @IBAction func addPlaceButton(_ sender: NSButton) {
         let placeLatitude = placeLatitudeTextField.doubleValue
         let placeLongitude = placeLongitudeTextField.doubleValue
@@ -40,6 +47,7 @@ class ViewController: NSViewController {
         if isGraphCreated {
             if graph.bounds.contains(point: placeCoordinates) {
                 places.append(placeCoordinates)
+                self.placesOutlineView.reloadData()
                 controller.addPlace(placeCoordinates)
                 webView.reload()
                 let svgUrl = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources/graph.html")
@@ -62,7 +70,10 @@ class ViewController: NSViewController {
         
     }
     
-    func createGraph() {
+    
+    // MARK: - Private methods
+    
+    private func createGraph() {
         let file = NSDataAsset(name: NSDataAsset.Name.init(rawValue: "tagil"))!
         let xml = SWXMLHash.parse(file.data)
         DispatchQueue.global().async {
@@ -101,3 +112,38 @@ class ViewController: NSViewController {
     
 }
 
+
+extension ViewController: NSOutlineViewDataSource {
+    
+    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
+        return places.count
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+        return places[index]
+    }
+    
+}
+
+
+extension ViewController: NSOutlineViewDelegate {
+    
+    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+        var view: NSTableCellView?
+        
+        if let coordinates = item as? Coordinate {
+            view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PlaceCell"), owner: self) as? NSTableCellView
+            if let textField = view?.textField {
+                textField.stringValue = "\(coordinates.latitude), \(coordinates.longitude)"
+                textField.sizeToFit()
+            }
+        }
+        
+        return view
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
+        return false
+    }
+    
+}
