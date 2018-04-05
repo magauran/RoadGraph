@@ -34,6 +34,11 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        placesOutlineView.register(NSNib(nibNamed: NSNib.Name(rawValue: "PlaceTableCellView"), bundle: nil), forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PlaceCell"))
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(deletePlace(notification:)), name: NSNotification.Name(rawValue: "DeletePlace"), object: nil)
+        
         createGraph()
     }
 
@@ -72,6 +77,29 @@ class ViewController: NSViewController {
     
     
     // MARK: - Private methods
+    
+    @objc private func deletePlace(notification: Notification) {
+        if let tag = notification.userInfo!["tag"] as? Int {
+            if tag < places.count {
+                places.remove(at: tag)
+                placesOutlineView.reloadData()
+                
+                DispatchQueue.global().async {
+                    self.controller.visualize()
+                    for i in self.places {
+                        self.controller.addPlace(i)
+                    }
+                    let svgUrl = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources/graph.html")
+                    let htmlString = try! String.init(contentsOf: svgUrl)
+                    
+                    DispatchQueue.main.async {
+                        self.webView.loadHTMLString(htmlString, baseURL: nil)
+                    }
+                }
+                
+            }
+        }
+    }
     
     private func createGraph() {
         let file = NSDataAsset(name: NSDataAsset.Name.init(rawValue: "tagil"))!
@@ -120,7 +148,7 @@ extension ViewController: NSOutlineViewDataSource {
     }
     
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        return places[index]
+        return [index, places[index]]
     }
     
 }
@@ -129,13 +157,12 @@ extension ViewController: NSOutlineViewDataSource {
 extension ViewController: NSOutlineViewDelegate {
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-        var view: NSTableCellView?
+        var view: PlaceTableCellView?
         
-        if let coordinates = item as? Coordinate {
-            view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PlaceCell"), owner: self) as? NSTableCellView
-            if let textField = view?.textField {
-                textField.stringValue = "\(coordinates.latitude), \(coordinates.longitude)"
-                textField.sizeToFit()
+        if let array = item as? Array<Any> {
+            if let coordinates = array[1] as? Coordinate {
+                view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PlaceCell"), owner: self) as? PlaceTableCellView
+                view?.setupCellData(tag: array[0] as! Int, coordinates: coordinates)
             }
         }
         

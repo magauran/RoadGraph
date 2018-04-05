@@ -53,7 +53,7 @@ class SVG {
     
     public func drawCircle(center: CGPoint, radius: CGFloat = 2) {
         let centerPoint = convertCoordinate(initialPoint: center, initialRect: sourceRect, resultRect: imageRect)
-        self.svgString += "<circle cx=\"\(centerPoint.x)\" cy=\"\(centerPoint.y)\" r=\"\(radius)\" fill=\"black\"/>\n"
+        self.svgString += "<circle cx=\"\(centerPoint.x)\" cy=\"\(centerPoint.y)\" r=\"\(radius)\" fill=\"red\"/>\n"
     }
     
     func convertCoordinate(initialPoint: CGPoint, initialRect: CGRect, resultRect: CGRect) -> CGPoint {
