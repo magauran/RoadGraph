@@ -19,11 +19,11 @@ class PlaceTableCellView: NSTableCellView {
     }
     
     public func setupCellData(tag: Int, coordinates: Coordinate) {
-        let latitudeFormattedString = String.init(format: "%.6f", coordinates.latitude)
-        let longitudeFormattedString = String.init(format: "%.6f", coordinates.longitude)
+        let latitudeFormattedString = String.init(format: "%.5f", coordinates.latitude)
+        let longitudeFormattedString = String.init(format: "%.5f", coordinates.longitude)
         placeTextField.stringValue = "\(latitudeFormattedString), \(longitudeFormattedString)"
         
         self.placeTag = tag
+        self.placeTextField.sizeToFit()
     }
-    
 }

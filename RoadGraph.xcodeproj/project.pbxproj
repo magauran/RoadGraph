@@ -32,8 +32,8 @@
 		8AC22B6E2057D4B50047CE72 /* GraphController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC22B6D2057D4B50047CE72 /* GraphController.swift */; };
 		8AC22B702057DCE00047CE72 /* OSMBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC22B6F2057DCE00047CE72 /* OSMBounds.swift */; };
 		8AC22B722057EB850047CE72 /* CGPoint+BinaryOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC22B712057EB850047CE72 /* CGPoint+BinaryOperations.swift */; };
+		8AC646802078BA7500313496 /* DisablableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC6467F2078BA7500313496 /* DisablableScrollView.swift */; };
 		8AF6A86E2076AA1800C07CA6 /* PlaceTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6A86D2076AA1800C07CA6 /* PlaceTableCellView.swift */; };
-		8AF6A8722076AA5800C07CA6 /* PlaceTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF6A8712076AA5800C07CA6 /* PlaceTableCellView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,8 +65,8 @@
 		8AC22B6D2057D4B50047CE72 /* GraphController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphController.swift; sourceTree = "<group>"; };
 		8AC22B6F2057DCE00047CE72 /* OSMBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSMBounds.swift; sourceTree = "<group>"; };
 		8AC22B712057EB850047CE72 /* CGPoint+BinaryOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+BinaryOperations.swift"; sourceTree = "<group>"; };
+		8AC6467F2078BA7500313496 /* DisablableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisablableScrollView.swift; sourceTree = "<group>"; };
 		8AF6A86D2076AA1800C07CA6 /* PlaceTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaceTableCellView.swift; path = RoadGraph/Views/Cells/PlaceTableCellView.swift; sourceTree = SOURCE_ROOT; };
-		8AF6A8712076AA5800C07CA6 /* PlaceTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceTableCellView.xib; sourceTree = "<group>"; };
 		A68193BFBBD18CADC2C9577C /* Pods_RoadGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoadGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93BAB0FC8F3D036FF2B3D2E /* Pods-RoadGraph.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadGraph.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadGraph/Pods-RoadGraph.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				8AF6A8702076AA3800C07CA6 /* Cells */,
+				8AC6467F2078BA7500313496 /* DisablableScrollView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -195,7 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				8AF6A86D2076AA1800C07CA6 /* PlaceTableCellView.swift */,
-				8AF6A8712076AA5800C07CA6 /* PlaceTableCellView.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -283,7 +283,6 @@
 				8AC22B6C2057D0F70047CE72 /* Assets.xcassets in Resources */,
 				8AAAC79A205D848E00A7A10D /* screenshot.png in Resources */,
 				8A8F1C8D2054846A00FBF980 /* Main.storyboard in Resources */,
-				8AF6A8722076AA5800C07CA6 /* PlaceTableCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A8F1C962054848700FBF980 /* OSM.swift in Sources */,
+				8AC646802078BA7500313496 /* DisablableScrollView.swift in Sources */,
 				8AC22B6320571D930047CE72 /* Constants.swift in Sources */,
 				8AF6A86E2076AA1800C07CA6 /* PlaceTableCellView.swift in Sources */,
 				8ABD858E2076C60E007404BD /* NSView+Constraints.swift in Sources */,

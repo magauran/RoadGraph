@@ -35,8 +35,6 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        placesOutlineView.register(NSNib(nibNamed: NSNib.Name(rawValue: "PlaceTableCellView"), bundle: nil), forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PlaceCell"))
-        
         NotificationCenter.default.addObserver(self, selector: #selector(deletePlace(notification:)), name: NSNotification.Name(rawValue: "DeletePlace"), object: nil)
         
         createGraph()
@@ -163,6 +161,7 @@ extension ViewController: NSOutlineViewDelegate {
             if let coordinates = array[1] as? Coordinate {
                 view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "PlaceCell"), owner: self) as? PlaceTableCellView
                 view?.setupCellData(tag: array[0] as! Int, coordinates: coordinates)
+                
             }
         }
         
