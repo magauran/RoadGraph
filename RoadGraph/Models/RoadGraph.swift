@@ -24,7 +24,7 @@ class RoadGraph {
         
     }
     
-    func createEdgeList(map: OSM) {
+    public func createEdgeList(map: OSM) {
         for way in map.ways {
             for i in 0..<way.nodes.count - 1 {
                 let edge = Edge(from: way.nodes[i], to: way.nodes[i + 1], width: self.getEdgeWidth(type: way.tags["highway"]!))
@@ -33,7 +33,7 @@ class RoadGraph {
         }
     }
     
-    func getEdgeWidth(type: String) -> Double {
+    public func getEdgeWidth(type: String) -> Double {
       
         switch type {
         case "motorway", "motorway":
@@ -54,4 +54,18 @@ class RoadGraph {
         }
     }
     
+    public func nodes(near startLocation: Coordinate, radius searchRadius: Int = 50) -> [OSMNode] {
+        var found = Array<OSMNode>()
+        
+        for (_, node) in nodes {
+            let distance = startLocation.distance(to: node.location)
+            if distance < Double(searchRadius) {
+                found.append(node)
+            }
+        }
+        
+        return found.sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.location.distance(to: startLocation) < rhs.location.distance(to: startLocation)
+        })
+    }
 }

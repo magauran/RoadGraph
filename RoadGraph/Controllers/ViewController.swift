@@ -52,10 +52,7 @@ class ViewController: NSViewController {
                 places.append(placeCoordinates)
                 self.placesOutlineView.reloadData()
                 controller.addPlace(placeCoordinates)
-                webView.reload()
-                let svgUrl = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources/graph.html")
-                let htmlString = try! String.init(contentsOf: svgUrl)
-                self.webView.loadHTMLString(htmlString, baseURL: nil)
+                self.refreshWebViewContents()
             }
         }
     }
@@ -68,6 +65,13 @@ class ViewController: NSViewController {
         if isGraphCreated {
             if graph.bounds.contains(point: userCoordinates) && !places.isEmpty {
                 print("Проложить маршрут от \(userCoordinates) до \(places)")
+                if let userNode = graph.nodes(near: userCoordinates, radius: 500).first {
+                    if let placeNode = graph.nodes(near: places.first!, radius: 500).first {
+                        let path = graph.shortestPath(source: userNode, destination: placeNode)
+                        self.controller.drawPath(path)
+                        self.refreshWebViewContents()
+                    }
+                }
             }
         }
         
@@ -77,26 +81,27 @@ class ViewController: NSViewController {
     // MARK: - Private methods
     
     @objc private func deletePlace(notification: Notification) {
-        if let tag = notification.userInfo!["tag"] as? Int {
-            if tag < places.count {
-                places.remove(at: tag)
-                placesOutlineView.reloadData()
-                
-                DispatchQueue.global().async {
-                    self.controller.visualize()
-                    for i in self.places {
-                        self.controller.addPlace(i)
-                    }
-                    let svgUrl = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources/graph.html")
-                    let htmlString = try! String.init(contentsOf: svgUrl)
-                    
-                    DispatchQueue.main.async {
-                        self.webView.loadHTMLString(htmlString, baseURL: nil)
-                    }
-                }
-                
-            }
-        }
+//        if let tag = notification.userInfo!["tag"] as? Int {
+//            if tag < places.count {
+//
+//                places.remove(at: tag)
+//                placesOutlineView.reloadData()
+//
+//                DispatchQueue.global().async {
+//                    self.controller.visualize()
+//                    for i in self.places {
+//                        self.controller.addPlace(i)
+//                    }
+//                    let svgUrl = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources/graph.html")
+//                    let htmlString = try! String.init(contentsOf: svgUrl)
+//
+//                    DispatchQueue.main.async {
+//                        self.webView.loadHTMLString(htmlString, baseURL: nil)
+//                    }
+//                }
+//
+//            }
+//        }
     }
     
     private func createGraph() {
@@ -134,6 +139,12 @@ class ViewController: NSViewController {
                 }
             }
         }
+    }
+    
+    private func refreshWebViewContents() {
+        let svgUrl = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources/graph.html")
+        let htmlString = try! String.init(contentsOf: svgUrl)
+        self.webView.loadHTMLString(htmlString, baseURL: nil)
     }
     
 }

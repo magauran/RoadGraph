@@ -33,7 +33,7 @@
 		8AC22B702057DCE00047CE72 /* OSMBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC22B6F2057DCE00047CE72 /* OSMBounds.swift */; };
 		8AC22B722057EB850047CE72 /* CGPoint+BinaryOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC22B712057EB850047CE72 /* CGPoint+BinaryOperations.swift */; };
 		8AC646802078BA7500313496 /* DisablableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC6467F2078BA7500313496 /* DisablableScrollView.swift */; };
-		8AC646822078C8D000313496 /* OSM+ ShortestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC646812078C8D000313496 /* OSM+ ShortestPath.swift */; };
+		8AC646822078C8D000313496 /* RoadGraph+ShortestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC646812078C8D000313496 /* RoadGraph+ShortestPath.swift */; };
 		8AC646842078D3DE00313496 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC646832078D3DE00313496 /* PriorityQueue.swift */; };
 		8AF6A86E2076AA1800C07CA6 /* PlaceTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6A86D2076AA1800C07CA6 /* PlaceTableCellView.swift */; };
 /* End PBXBuildFile section */
@@ -68,7 +68,7 @@
 		8AC22B6F2057DCE00047CE72 /* OSMBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSMBounds.swift; sourceTree = "<group>"; };
 		8AC22B712057EB850047CE72 /* CGPoint+BinaryOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+BinaryOperations.swift"; sourceTree = "<group>"; };
 		8AC6467F2078BA7500313496 /* DisablableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisablableScrollView.swift; sourceTree = "<group>"; };
-		8AC646812078C8D000313496 /* OSM+ ShortestPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSM+ ShortestPath.swift"; sourceTree = "<group>"; };
+		8AC646812078C8D000313496 /* RoadGraph+ShortestPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoadGraph+ShortestPath.swift"; sourceTree = "<group>"; };
 		8AC646832078D3DE00313496 /* PriorityQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 		8AF6A86D2076AA1800C07CA6 /* PlaceTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaceTableCellView.swift; path = RoadGraph/Views/Cells/PlaceTableCellView.swift; sourceTree = SOURCE_ROOT; };
 		A68193BFBBD18CADC2C9577C /* Pods_RoadGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoadGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,7 +131,7 @@
 				8A8F1CA520553B6900FBF980 /* RoadGraph.swift */,
 				8A8F1C952054848700FBF980 /* OSM.swift */,
 				8A8F1C992054849300FBF980 /* OSMTaggable.swift */,
-				8AC646812078C8D000313496 /* OSM+ ShortestPath.swift */,
+				8AC646812078C8D000313496 /* RoadGraph+ShortestPath.swift */,
 				8A8F1C9B2054849700FBF980 /* OSMWay.swift */,
 				8A8F1C972054848D00FBF980 /* OSMNode.swift */,
 				8AC22B6F2057DCE00047CE72 /* OSMBounds.swift */,
@@ -365,7 +365,7 @@
 				8A8F1C9A2054849300FBF980 /* OSMTaggable.swift in Sources */,
 				8A8F1C9C2054849800FBF980 /* OSMWay.swift in Sources */,
 				8AC22B6E2057D4B50047CE72 /* GraphController.swift in Sources */,
-				8AC646822078C8D000313496 /* OSM+ ShortestPath.swift in Sources */,
+				8AC646822078C8D000313496 /* RoadGraph+ShortestPath.swift in Sources */,
 				8AC22B702057DCE00047CE72 /* OSMBounds.swift in Sources */,
 				8A8F1CA820553C4200FBF980 /* Edge.swift in Sources */,
 			);

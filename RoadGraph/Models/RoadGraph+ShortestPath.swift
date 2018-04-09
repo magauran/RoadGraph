@@ -1,5 +1,5 @@
 //
-//  OSM+ ShortestPath.swift
+//  RoadGraph+ShortestPath.swift
 //  RoadGraph
 //
 //  Created by Алексей on 07.04.2018.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-extension OSM {
+extension RoadGraph {
     
-    func shortestPath(source: OSMNode, destination: OSMNode) -> (distances: Dictionary<OSMNode, Double>, previous: Dictionary<OSMNode, OSMNode>) {
+    func shortestPath(source: OSMNode, destination: OSMNode) -> [OSMNode] {
         
         print("Starting route between \(source) and \(destination)")
         
@@ -26,17 +26,13 @@ extension OSM {
             queue.push(node)
         }
         
-        //print(queue.pop() == keefe)
-        
         while let node = queue.pop() {
-            //            print("Starting at \(node)")
             //Check if this node is reachable based on data
             if let distance = distances[node], distance < Double.infinity {
                 //For every neighbor
                 for neighbor in node.adjacent {
                     let distance = distance + node.location.distance(to: neighbor.location)
                     //If the new distance is less than the existing distance, update the distance and previous entry
-                    //                    print("\t\(neighbor) is \(distance) away")
                     if (distances[neighbor] ?? Double.infinity) > distance {
                         distances[neighbor] = distance
                         previous[neighbor] = node
@@ -50,7 +46,14 @@ extension OSM {
             }
         }
         
-        return (distances: distances, previous: previous)
+        var prev = destination
+        var shortestPath = [OSMNode]()
+        while (prev != source) {
+            shortestPath.append(prev)
+            prev = previous[prev]!
+        }
+        shortestPath.append(prev)
+        return shortestPath
     }
     
 }

@@ -53,5 +53,20 @@ class GraphController {
         svg.saveSVGToHTMLFile()
     }
     
+    public func drawPath(_ path: [OSMNode]) {
+        let point1 = Coordinate(latitude: self.graph.bounds.minLat, longitude: self.graph.bounds.minLon).cartesianCoordinate
+        for i in 0 ..< path.count - 1 {
+            let startPoint = path[i].location.cartesianCoordinate
+            let endPoint = path[i + 1].location.cartesianCoordinate
+            svg.drawLine(from: CGPoint(x: startPoint.x - point1.x,
+                                       y: sourceRect.height - startPoint.y + point1.y),
+                         to: CGPoint(x: endPoint.x - point1.x,
+                                     y: sourceRect.height - endPoint.y + point1.y),
+                         width: 1,
+                         color: "#FF1088")
+        }
+        svg.saveSVGToHTMLFile()
+    }
+    
 }
 
