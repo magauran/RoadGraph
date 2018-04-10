@@ -24,6 +24,7 @@
 		8AAAC796205D83C700A7A10D /* adjacencyList.csv in Resources */ = {isa = PBXBuildFile; fileRef = 8AAAC795205D83C600A7A10D /* adjacencyList.csv */; };
 		8AAAC798205D83F100A7A10D /* edgeList.csv in Resources */ = {isa = PBXBuildFile; fileRef = 8AAAC797205D83F100A7A10D /* edgeList.csv */; };
 		8AAAC79A205D848E00A7A10D /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AAAC799205D848E00A7A10D /* screenshot.png */; };
+		8ABD858E2076C60E007404BD /* NSView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABD858D2076C60E007404BD /* NSView+Constraints.swift */; };
 		8AC22B61205708C50047CE72 /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC22B60205708C50047CE72 /* SVG.swift */; };
 		8AC22B6320571D930047CE72 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC22B6220571D930047CE72 /* Constants.swift */; };
 		8AC22B692057CF980047CE72 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC22B682057CF980047CE72 /* CSV.swift */; };
@@ -31,6 +32,10 @@
 		8AC22B6E2057D4B50047CE72 /* GraphController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC22B6D2057D4B50047CE72 /* GraphController.swift */; };
 		8AC22B702057DCE00047CE72 /* OSMBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC22B6F2057DCE00047CE72 /* OSMBounds.swift */; };
 		8AC22B722057EB850047CE72 /* CGPoint+BinaryOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC22B712057EB850047CE72 /* CGPoint+BinaryOperations.swift */; };
+		8AC646802078BA7500313496 /* DisablableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC6467F2078BA7500313496 /* DisablableScrollView.swift */; };
+		8AC646822078C8D000313496 /* RoadGraph+ShortestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC646812078C8D000313496 /* RoadGraph+ShortestPath.swift */; };
+		8AC646842078D3DE00313496 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC646832078D3DE00313496 /* PriorityQueue.swift */; };
+		8AF6A86E2076AA1800C07CA6 /* PlaceTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6A86D2076AA1800C07CA6 /* PlaceTableCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +59,7 @@
 		8AAAC795205D83C600A7A10D /* adjacencyList.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = adjacencyList.csv; sourceTree = "<group>"; };
 		8AAAC797205D83F100A7A10D /* edgeList.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = edgeList.csv; sourceTree = "<group>"; };
 		8AAAC799205D848E00A7A10D /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
+		8ABD858D2076C60E007404BD /* NSView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Constraints.swift"; sourceTree = "<group>"; };
 		8AC22B60205708C50047CE72 /* SVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVG.swift; sourceTree = "<group>"; };
 		8AC22B6220571D930047CE72 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8AC22B682057CF980047CE72 /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
@@ -61,6 +67,10 @@
 		8AC22B6D2057D4B50047CE72 /* GraphController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphController.swift; sourceTree = "<group>"; };
 		8AC22B6F2057DCE00047CE72 /* OSMBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSMBounds.swift; sourceTree = "<group>"; };
 		8AC22B712057EB850047CE72 /* CGPoint+BinaryOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+BinaryOperations.swift"; sourceTree = "<group>"; };
+		8AC6467F2078BA7500313496 /* DisablableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisablableScrollView.swift; sourceTree = "<group>"; };
+		8AC646812078C8D000313496 /* RoadGraph+ShortestPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoadGraph+ShortestPath.swift"; sourceTree = "<group>"; };
+		8AC646832078D3DE00313496 /* PriorityQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
+		8AF6A86D2076AA1800C07CA6 /* PlaceTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaceTableCellView.swift; path = RoadGraph/Views/Cells/PlaceTableCellView.swift; sourceTree = SOURCE_ROOT; };
 		A68193BFBBD18CADC2C9577C /* Pods_RoadGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoadGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93BAB0FC8F3D036FF2B3D2E /* Pods-RoadGraph.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadGraph.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadGraph/Pods-RoadGraph.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +118,7 @@
 			children = (
 				8AC22B672057CF360047CE72 /* Application */,
 				8AC22B642057CD430047CE72 /* Models */,
+				8AF6A86F2076AA2200C07CA6 /* Views */,
 				8AC22B662057CEE60047CE72 /* Controllers */,
 				8AC22B652057CEDC0047CE72 /* Helpers */,
 			);
@@ -120,6 +131,7 @@
 				8A8F1CA520553B6900FBF980 /* RoadGraph.swift */,
 				8A8F1C952054848700FBF980 /* OSM.swift */,
 				8A8F1C992054849300FBF980 /* OSMTaggable.swift */,
+				8AC646812078C8D000313496 /* RoadGraph+ShortestPath.swift */,
 				8A8F1C9B2054849700FBF980 /* OSMWay.swift */,
 				8A8F1C972054848D00FBF980 /* OSMNode.swift */,
 				8AC22B6F2057DCE00047CE72 /* OSMBounds.swift */,
@@ -135,7 +147,9 @@
 				8AC22B60205708C50047CE72 /* SVG.swift */,
 				8AC22B682057CF980047CE72 /* CSV.swift */,
 				8AAAC791205D6C4F00A7A10D /* Dictionary+Contains.swift */,
+				8AC646832078D3DE00313496 /* PriorityQueue.swift */,
 				8AC22B712057EB850047CE72 /* CGPoint+BinaryOperations.swift */,
+				8ABD858D2076C60E007404BD /* NSView+Constraints.swift */,
 				8AC22B6220571D930047CE72 /* Constants.swift */,
 			);
 			path = Helpers;
@@ -173,6 +187,23 @@
 				8AC22B6B2057D0F70047CE72 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		8AF6A86F2076AA2200C07CA6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8AF6A8702076AA3800C07CA6 /* Cells */,
+				8AC6467F2078BA7500313496 /* DisablableScrollView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8AF6A8702076AA3800C07CA6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8AF6A86D2076AA1800C07CA6 /* PlaceTableCellView.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		F4286C1E814D31D88EA69CA3 /* Pods */ = {
@@ -258,7 +289,6 @@
 				8AC22B6C2057D0F70047CE72 /* Assets.xcassets in Resources */,
 				8AAAC79A205D848E00A7A10D /* screenshot.png in Resources */,
 				8A8F1C8D2054846A00FBF980 /* Main.storyboard in Resources */,
-				8A762CC02059A9EF00A4C384 /* screenshot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,7 +348,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A8F1C962054848700FBF980 /* OSM.swift in Sources */,
+				8AC646802078BA7500313496 /* DisablableScrollView.swift in Sources */,
 				8AC22B6320571D930047CE72 /* Constants.swift in Sources */,
+				8AF6A86E2076AA1800C07CA6 /* PlaceTableCellView.swift in Sources */,
+				8ABD858E2076C60E007404BD /* NSView+Constraints.swift in Sources */,
+				8AC646842078D3DE00313496 /* PriorityQueue.swift in Sources */,
 				8A8F1C982054848D00FBF980 /* OSMNode.swift in Sources */,
 				8AC22B61205708C50047CE72 /* SVG.swift in Sources */,
 				8AAAC792205D6C4F00A7A10D /* Dictionary+Contains.swift in Sources */,
@@ -331,6 +365,7 @@
 				8A8F1C9A2054849300FBF980 /* OSMTaggable.swift in Sources */,
 				8A8F1C9C2054849800FBF980 /* OSMWay.swift in Sources */,
 				8AC22B6E2057D4B50047CE72 /* GraphController.swift in Sources */,
+				8AC646822078C8D000313496 /* RoadGraph+ShortestPath.swift in Sources */,
 				8AC22B702057DCE00047CE72 /* OSMBounds.swift in Sources */,
 				8A8F1CA820553C4200FBF980 /* Edge.swift in Sources */,
 			);
