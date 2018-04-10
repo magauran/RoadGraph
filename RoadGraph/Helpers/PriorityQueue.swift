@@ -125,10 +125,6 @@ public struct PriorityQueue<T: Comparable> {
         }
     }
     
-    public mutating func reshuffle(element: T) {
-        self.remove(element)
-        self.push(element)
-    }
 }
 
 // MARK: - GeneratorType

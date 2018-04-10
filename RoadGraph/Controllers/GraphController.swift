@@ -16,7 +16,6 @@ class GraphController {
     
     init(graph: RoadGraph) {
         self.graph = graph
-        print(graph.edgeList.count)
     }
     
     public func saveAdjacencyList() {

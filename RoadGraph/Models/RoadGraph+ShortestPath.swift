@@ -28,21 +28,16 @@ extension RoadGraph {
         
         while let node = queue.pop() {
             //Check if this node is reachable based on data
-            if let distance = distances[node], distance < Double.infinity {
-                //For every neighbor
-                for neighbor in node.adjacent {
-                    let distance = distance + node.location.distance(to: neighbor.location)
-                    //If the new distance is less than the existing distance, update the distance and previous entry
-                    if (distances[neighbor] ?? Double.infinity) > distance {
-                        distances[neighbor] = distance
-                        previous[neighbor] = node
-                        //Update the element
-                        queue.reshuffle(element: neighbor)
-                    }
+            guard let distance = distances[node], distance < Double.infinity else { continue }
+            //For every neighbor
+            for neighbor in node.adjacent {
+                let distance = distance + node.location.distance(to: neighbor.location)
+                //If the new distance is less than the existing distance, update the distance and previous entry
+                if (distances[neighbor] ?? Double.infinity) > distance {
+                    distances[neighbor] = distance
+                    previous[neighbor] = node
+                    queue.push(neighbor)
                 }
-            }
-            if node == destination {
-                break
             }
         }
         
