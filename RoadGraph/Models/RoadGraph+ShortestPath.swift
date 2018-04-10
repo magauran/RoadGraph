@@ -16,7 +16,7 @@ public enum Algorithm {
 
 extension RoadGraph {
     
-    func shortestPath(source: OSMNode, destination: OSMNode, algorithm: Algorithm = .AStar) -> [OSMNode] {
+    func shortestPath(source: OSMNode, destination: OSMNode, algorithm: Algorithm = .Dijkstra) -> [OSMNode] {
         
         switch algorithm {
         case .Dijkstra:
@@ -115,8 +115,78 @@ extension RoadGraph {
         return shortestPath
     }
     
+    private enum Status {
+        case notYet
+        case now
+        case already
+    }
+    
     private func levit(source: OSMNode, destination: OSMNode) -> [OSMNode] {
-        return []
+        var distances = Dictionary<OSMNode, Double>()
+        var previous = Dictionary<OSMNode, OSMNode>()
+        var status = Dictionary<OSMNode, Status>()
+        
+        var queue = PriorityQueue<OSMNode>(order: { (lhs, rhs) -> Bool in
+            return (distances[lhs] ?? Double.infinity) > (distances[rhs] ?? Double.infinity)
+        })
+        
+        distances[source] = 0.0
+        for (_, node) in self.nodes {
+            queue.push(node)
+        }
+        
+        while let node = queue.pop() {
+            //Check if this node is reachable based on data
+            guard let distance = distances[node], distance < Double.infinity else { continue }
+            //For every neighbor
+            for neighbor in node.adjacent {
+                let distance = distance + node.location.distance(to: neighbor.location)
+                if status[neighbor] == nil {
+                    status[neighbor] = .notYet
+                }
+                switch (status[neighbor]!) {
+                case .notYet:
+                    status[neighbor] = .now
+                    if (distances[neighbor] ?? Double.infinity) > distance {
+                        distances[neighbor] = distance
+                        previous[neighbor] = node
+                        queue.push(neighbor)
+                    }
+                    break
+                case .now:
+                    if (distances[neighbor] ?? Double.infinity) > distance {
+                        distances[neighbor] = distance
+                        previous[neighbor] = node
+                        queue.push(neighbor)
+                    }
+                    break
+                default:
+                    if (distances[neighbor] ?? Double.infinity) > distance {
+                        status[neighbor] = .now
+                        distances[neighbor] = distance
+                        previous[neighbor] = node
+                        queue.push(neighbor)
+                    }
+                    break
+                }
+                if (distances[neighbor] ?? Double.infinity) > distance {
+                    distances[neighbor] = distance
+                    previous[neighbor] = node
+                    queue.push(neighbor)
+                }
+                status[neighbor] = .already
+            }
+            
+        }
+        
+        var prev = destination
+        var shortestPath = [OSMNode]()
+        while (prev != source) {
+            shortestPath.append(prev)
+            prev = previous[prev]!
+        }
+        shortestPath.append(prev)
+        return shortestPath
     }
     
 }
