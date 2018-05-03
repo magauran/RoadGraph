@@ -26,6 +26,7 @@ class ViewController: NSViewController {
     
     var graph: RoadGraph!
     var places = [Coordinate]()
+    var defaultPlaces = [Coordinate]()
     var isGraphCreated = false
     var controller: GraphController!
     
@@ -104,6 +105,7 @@ class ViewController: NSViewController {
             }
         }
     }
+    
     private func createGraph() {
         let file = NSDataAsset(name: NSDataAsset.Name.init(rawValue: "tagil"))!
         let xml = SWXMLHash.parse(file.data)
@@ -129,6 +131,10 @@ class ViewController: NSViewController {
                         self.webView.allowsMagnification = true
                         self.webView.magnification = 7.0
                     }
+                    
+                    DispatchQueue.main.async {
+                        self.addDefaultPlaces()
+                    }
                 }
                 
                 self.controller.saveAdjacencyList()
@@ -145,6 +151,22 @@ class ViewController: NSViewController {
         let svgUrl = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources/graph.html")
         let htmlString = try! String.init(contentsOf: svgUrl)
         self.webView.loadHTMLString(htmlString, baseURL: nil)
+    }
+    
+    private func addDefaultPlaces() {
+        
+        if isGraphCreated {
+            self.places = Constants.defaultPlaces
+            self.placesOutlineView.reloadData()
+            for place in Constants.defaultPlaces {
+                if graph.bounds.contains(point: place) {
+                    controller.addDefaultPlace(place)
+                    self.refreshWebViewContents()
+                }
+            }
+            
+        }
+        
     }
     
 }

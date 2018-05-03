@@ -51,9 +51,9 @@ class SVG {
         self.svgString += "<line x1=\"\(point1.x)\" y1=\"\(point1.y)\" x2=\"\(point2.x)\" y2=\"\(point2.y)\" style=\"stroke:\(color); stroke-width:\(width)\" />\n"
     }
     
-    public func drawCircle(center: CGPoint, radius: CGFloat = 2) {
+    public func drawCircle(center: CGPoint, radius: CGFloat = 2, color: String = "red") {
         let centerPoint = convertCoordinate(initialPoint: center, initialRect: sourceRect, resultRect: imageRect)
-        self.svgString += "<circle cx=\"\(centerPoint.x)\" cy=\"\(centerPoint.y)\" r=\"\(radius)\" fill=\"red\"/>\n"
+        self.svgString += "<circle cx=\"\(centerPoint.x)\" cy=\"\(centerPoint.y)\" r=\"\(radius)\" fill=\"\(color)\"/>\n"
     }
     
     func convertCoordinate(initialPoint: CGPoint, initialRect: CGRect, resultRect: CGRect) -> CGPoint {
