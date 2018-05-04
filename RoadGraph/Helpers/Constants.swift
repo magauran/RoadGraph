@@ -42,8 +42,8 @@ class Constants {
         // Лента
         places.append(Coordinate(latitude: 57.875737, longitude: 60.017955))
         
-        // Пятёрочка
-        places.append(Coordinate(latitude: 57.909621, longitude: 60.094603))
+        // Алтайский
+        places.append(Coordinate(latitude: 57.921081, longitude: 60.060960))
         
         return places
     }

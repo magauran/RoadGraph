@@ -26,10 +26,9 @@ class ViewController: NSViewController {
     
     var graph: RoadGraph!
     var places = [Coordinate]()
-    var defaultPlaces = [Coordinate]()
     var isGraphCreated = false
     var controller: GraphController!
-    
+    var currentPlace: Coordinate!
     
     // MARK: - Lifecycle
     
@@ -43,7 +42,7 @@ class ViewController: NSViewController {
 
     // MARK: - IBActions
     
-    @IBAction func addPlaceButton(_ sender: NSButton) {
+    @IBAction func addPlace(_ sender: NSButton) {
         let placeLatitude = placeLatitudeTextField.doubleValue
         let placeLongitude = placeLongitudeTextField.doubleValue
         let placeCoordinates = Coordinate(latitude: placeLatitude, longitude: placeLongitude)
@@ -58,7 +57,21 @@ class ViewController: NSViewController {
         }
     }
     
-    @IBAction func getRoutesButton(_ sender: NSButton) {
+    @IBAction func addCurrentPlace(_ sender: Any) {
+        let userLatitude = userLatitudeTextField.doubleValue
+        let userLongitude = userLongitudeTextField.doubleValue
+        let userCoordinates = Coordinate(latitude: userLatitude, longitude: userLongitude)
+        
+        if isGraphCreated {
+            if graph.bounds.contains(point: userCoordinates) {
+                controller.addUserPlace(userCoordinates)
+                currentPlace = userCoordinates
+                self.refreshWebViewContents()
+            }
+        }
+    }
+    
+    @IBAction func getRoutes(_ sender: NSButton) {
         let userLatitude = userLatitudeTextField.doubleValue
         let userLongitude = userLongitudeTextField.doubleValue
         let userCoordinates = Coordinate(latitude: userLatitude, longitude: userLongitude)
@@ -69,9 +82,10 @@ class ViewController: NSViewController {
                 for place in places {
                     if let placeNode = graph.nodes(near: place, radius: 500).first {
                         let path = graph.shortestPath(source: userNode, destination: placeNode)
-                        self.controller.drawPath(path)
+                        let pathStr = path.0.flatMap{"\($0.id)"}.joined(separator: ",")
+                        print(pathStr) // save to csv
+                        self.controller.drawPath(path.0)
                         self.refreshWebViewContents()
-                        // надо находить кратчайший путь
                     }
                 }
             }
@@ -79,6 +93,74 @@ class ViewController: NSViewController {
         
     }
     
+    @IBAction func solveTSP(_ sender: Any) {
+        
+        guard let start = currentPlace else {return}
+        guard let startNode = graph.nodes(near: start, radius: 300).first else {return}
+    
+        let nodes = [startNode]
+        let nodes2 = places.map{graph.nodes(near: $0, radius: 300).first!}
+        let allNodes = nodes + nodes2
+        
+        var lengths = Array(repeating: Array(repeating: 10000000.0, count: places.count + 1), count: places.count + 1)
+        let userDefaults = UserDefaults.standard
+        if 1==2/*let decoded  = userDefaults.object(forKey: "lengths") as? Data*/ {
+            //lengths = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [[Double]]
+        } else {
+            for i in 0..<allNodes.count - 1 {
+                for j in i + 1..<allNodes.count {
+                    let length = graph.shortestPath(source: allNodes[i], destination: allNodes[j] ).1
+                    lengths[i][j] = length
+                    lengths[j][i] = length
+                }
+            }
+            
+            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: lengths)
+            userDefaults.set(encodedData, forKey: "lengths")
+            userDefaults.synchronize()
+        }
+        
+        var path = [Int]()
+        path.append(0)
+        while path.count != places.count + 1 {
+            let min = lengths[path.last!].min()!
+            let indexOfMin = Int(lengths[path.last!].index(of: min)!)
+            for h in 0..<lengths.count {
+                lengths[path.last!][h] = 100000000.0
+                lengths[h][path.last!] = 100000000.0
+            }
+            
+            path.append(indexOfMin)
+        }
+        path.append(0)
+        
+        var pathNodes = [OSMNode]()
+        for i in path {
+            pathNodes.append(allNodes[i])
+        }
+        
+        let dispatchGroup = DispatchGroup()
+        
+        for i in 0..<pathNodes.count - 1 {
+            dispatchGroup.enter()
+            DispatchQueue.global().async {
+                let (p, _) = self.graph.shortestPath(source: pathNodes[i], destination: pathNodes[i + 1])
+                self.controller.drawPath(p)
+                print("путь \(i) построен")
+                DispatchQueue.main.async {
+                    self.refreshWebViewContents()
+                }
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: DispatchQueue.global()) {
+            DispatchQueue.main.async {
+                print("TSP solved")
+                self.refreshWebViewContents()
+            }
+        }
+    }
     
     // MARK: - Private methods
     

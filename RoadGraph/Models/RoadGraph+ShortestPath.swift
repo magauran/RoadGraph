@@ -16,7 +16,7 @@ public enum Algorithm {
 
 extension RoadGraph {
     
-    func shortestPath(source: OSMNode, destination: OSMNode, algorithm: Algorithm = .Dijkstra) -> [OSMNode] {
+    func shortestPath(source: OSMNode, destination: OSMNode, algorithm: Algorithm = .Dijkstra) -> ([OSMNode], Double) {
         
         switch algorithm {
         case .Dijkstra:
@@ -29,7 +29,7 @@ extension RoadGraph {
         
     }
     
-    private func dijkstra(source: OSMNode, destination: OSMNode) -> [OSMNode] {
+    private func dijkstra(source: OSMNode, destination: OSMNode) -> ([OSMNode], Double) {
         var distances = Dictionary<OSMNode, Double>()
         var previous = Dictionary<OSMNode, OSMNode>()
         
@@ -58,13 +58,15 @@ extension RoadGraph {
         }
         
         var prev = destination
+        var length = 0.0
         var shortestPath = [OSMNode]()
         while (prev != source) {
+            length += prev.location.distance(to: previous[prev]!.location)
             shortestPath.append(prev)
             prev = previous[prev]!
         }
         shortestPath.append(prev)
-        return shortestPath
+        return (shortestPath, length)
     }
    
     
@@ -72,7 +74,7 @@ extension RoadGraph {
         return Double(sqrt(pow((from.location.cartesianCoordinate.x - to.location.cartesianCoordinate.x), 2) + pow((from.location.cartesianCoordinate.y - to.location.cartesianCoordinate.y), 2)))
     }
     
-    private func aStar(source: OSMNode, destination: OSMNode) -> [OSMNode] {
+    private func aStar(source: OSMNode, destination: OSMNode) -> ([OSMNode], Double) {
         var distances = Dictionary<OSMNode, Double>()
         var previous = Dictionary<OSMNode, OSMNode>()
         var queue = PriorityQueue<OSMNode>(order: { (lhs, rhs) -> Bool in
@@ -105,14 +107,16 @@ extension RoadGraph {
         }
         
         var prev = destination
+        var length = 0.0
         var shortestPath = [OSMNode]()
         while (prev != source) {
+            length += prev.location.distance(to: previous[prev]!.location)
             shortestPath.append(prev)
             prev = previous[prev]!
         }
         shortestPath.append(prev)
         
-        return shortestPath
+        return (shortestPath, length)
     }
     
     private enum Status {
@@ -121,7 +125,7 @@ extension RoadGraph {
         case already
     }
     
-    private func levit(source: OSMNode, destination: OSMNode) -> [OSMNode] {
+    private func levit(source: OSMNode, destination: OSMNode) -> ([OSMNode], Double) {
         var distances = Dictionary<OSMNode, Double>()
         var previous = Dictionary<OSMNode, OSMNode>()
         var status = Dictionary<OSMNode, Status>()
@@ -180,13 +184,15 @@ extension RoadGraph {
         }
         
         var prev = destination
+        var length = 0.0
         var shortestPath = [OSMNode]()
         while (prev != source) {
+            length += prev.location.distance(to: previous[prev]!.location)
             shortestPath.append(prev)
             prev = previous[prev]!
         }
         shortestPath.append(prev)
-        return shortestPath
+        return (shortestPath, length)
     }
     
 }

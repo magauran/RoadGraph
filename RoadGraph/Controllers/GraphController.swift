@@ -61,6 +61,15 @@ class GraphController {
         svg.saveSVGToHTMLFile()
     }
     
+    public func addUserPlace(_ place: Coordinate) {
+        let point1 = Coordinate(latitude: self.graph.bounds.minLat, longitude: self.graph.bounds.minLon).cartesianCoordinate
+        svg.drawCircle(center: CGPoint(x: place.cartesianCoordinate.x - point1.x,
+                                       y: sourceRect.height - place.cartesianCoordinate.y + point1.y),
+                       radius: 4,
+                       color: "red")
+        svg.saveSVGToHTMLFile()
+    }
+    
     public func drawPath(_ path: [OSMNode]) {
         let point1 = Coordinate(latitude: self.graph.bounds.minLat, longitude: self.graph.bounds.minLon).cartesianCoordinate
         for i in 0 ..< path.count - 1 {
