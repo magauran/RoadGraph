@@ -10,23 +10,40 @@ import Foundation
 
 class GeneticAlgorithm {
     var populationSize = 500
-    let mutationProbability = 0.015
+    let mutationProbability = 0.03
     
     let nodes: [OSMNode]
+    let lengths: [[Double]]
     var onNewGeneration: ((Way, Int) -> ())?
     
     private var population: [Way] = []
     
-    init(withCities: [OSMNode]) {
+    init(withCities: [OSMNode], lengths: [[Double]]) {
         self.nodes = withCities
-        self.population = self.randomPopulation(fromCities: self.nodes)
+        self.lengths = lengths
+        self.population = self.randomPopulation(fromNodes: self.nodes)
     }
     
-    private func randomPopulation(fromCities: [OSMNode]) -> [Way] {
+    private func randomPopulation(fromNodes: [OSMNode]) -> [Way] {
         var result: [Way] = []
         for _ in 0..<populationSize {
-            let randomCities = fromCities.shuffle()
-            result.append(Way(nodes: randomCities))
+            let randomCities = fromNodes.shuffle()
+            var shuffledLengths = Array(repeating: Array(repeating: Double.infinity, count: lengths.count), count: lengths.count);
+            for i in 0..<lengths.count - 1 {
+                for j in i + 1..<lengths.count {
+                    let findI = self.nodes.index(where: {$0 == randomCities[i]}) ?? 0
+                    let findJ = self.nodes.index(where: {$0 == randomCities[j]}) ?? 0
+                    shuffledLengths[i][j] = lengths[findI][findJ]
+                    shuffledLengths[j][i] = shuffledLengths[i][j]
+                }
+            }
+            var dist = 0.0
+            for i in 0..<randomCities.count - 1 {
+                for j in i + 1..<randomCities.count {
+                    dist += shuffledLengths[i][j]
+                }
+            }
+            result.append(Way(nodes: randomCities, distance: dist))
         }
         return result
     }
@@ -39,7 +56,7 @@ class GeneticAlgorithm {
         DispatchQueue.global().async {
             while self.evolving{
                 
-                let currentTotalDistance = self.population.reduce(0.0, { $0 + $1.distance })
+                let currentTotalDistance = self.population.reduce(0.0, { $0 + $1.distance() })
                 let sortByFitnessDESC: (Way, Way) -> Bool = { $0.fitness(with: currentTotalDistance) > $1.fitness(with: currentTotalDistance) }
                 let currentGeneration = self.population.sorted(by: sortByFitnessDESC)
                 
@@ -73,9 +90,9 @@ class GeneticAlgorithm {
     private func getParent(fromGeneration generation: [Way], with totalDistance: Double) -> Way? {
         let fitness = Double(arc4random()) / Double(UINT32_MAX)
         
-        var currentFitness: Double = 0.0
+        var currentFitness: CGFloat = 0.0
         var result: Way?
-        generation.forEach { (route) in
+        for route in generation {
             if currentFitness <= fitness {
                 currentFitness += route.fitness(with: totalDistance)
                 result = route
