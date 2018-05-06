@@ -16,6 +16,9 @@ class GraphController {
     
     init(graph: RoadGraph) {
         self.graph = graph
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(drawPath(with:)), name: NSNotification.Name(rawValue: "DrawPath"), object: nil)
+        
     }
     
     public func saveAdjacencyList() {
@@ -68,6 +71,12 @@ class GraphController {
                        radius: 4,
                        color: "red")
         svg.saveSVGToHTMLFile()
+    }
+    
+    @objc private func drawPath(with notification: Notification) {
+        if let path = notification.object as? [OSMNode] {
+            drawPath(path)
+        }
     }
     
     public func drawPath(_ path: [OSMNode]) {
