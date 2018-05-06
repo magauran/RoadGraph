@@ -37,6 +37,10 @@ public class OSMNode: OSMTaggable {
         self.osm = osm
     }
     
+    func distance(to: OSMNode) -> Double {
+        return location.distance(to: to.location)
+    }
+    
 }
 
 extension OSMNode: Hashable {

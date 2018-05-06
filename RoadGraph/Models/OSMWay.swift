@@ -8,16 +8,14 @@
 import Foundation
 import SWXMLHash
 
-public class OSMWay: OSMTaggable {
+public class OSMWay: Way, OSMTaggable {
     
     public let id: String
     public let tags: Dictionary<String, String>
-    public let nodes: Array<OSMNode>
     
     private(set) weak var osm: OSM?
     
     init(xml: XMLIndexer, osm: OSM) throws {
-        
         self.id = try xml.value(ofAttribute: "id")
         
         var tags = [String: String]()
@@ -46,6 +44,7 @@ public class OSMWay: OSMTaggable {
                 nodes[i].adjacent.insert(nodes[i + 1])
             }
         }
+        super.init()
         self.nodes = nodes
     }
     

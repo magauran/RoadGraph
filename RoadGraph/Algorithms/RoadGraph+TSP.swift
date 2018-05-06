@@ -8,10 +8,44 @@
 
 import Foundation
 
+public enum TSPAlgorithm {
+    case NearestNeighbor
+    case Genetic
+}
+
 extension RoadGraph {
     
-    func solveTSP(nodes: [OSMNode]) {
+    
+    func solveTSP(nodes: [OSMNode], algorithm: TSPAlgorithm = .Genetic) {
         
+        var pathNodes = [OSMNode]()
+        
+        switch algorithm {
+        case .NearestNeighbor:
+            pathNodes = nearestNeighbor(nodes: nodes)
+            drawPath(path: pathNodes)
+            break
+        case .Genetic:
+            let genetic = GeneticAlgorithm(withCities: nodes) // TODO: корректное расстояние между узлами
+            genetic.onNewGeneration = {
+                (route, generation) in
+                if generation == 10 {
+                    genetic.stopEvolution()
+                    print(route)
+                }
+                DispatchQueue.main.async {
+                    print("Generation: \(generation)")
+                }
+            }
+            genetic.startEvolution()
+            break
+        }
+        
+        
+    }
+    
+    
+    private func nearestNeighbor(nodes: [OSMNode]) -> [OSMNode] {
         var lengths = Array(repeating: Array(repeating: Double.infinity, count: nodes.count), count: nodes.count)
         let userDefaults = UserDefaults.standard
         if let decoded  = userDefaults.object(forKey: "lengths") as? Data {
@@ -48,13 +82,16 @@ extension RoadGraph {
         for i in path {
             pathNodes.append(nodes[i])
         }
-        
+        return pathNodes
+    }
+    
+    private func drawPath(path: [OSMNode]) {
         let dispatchGroup = DispatchGroup()
         
-        for i in 0..<pathNodes.count - 1 {
+        for i in 0..<path.count - 1 {
             dispatchGroup.enter()
             DispatchQueue.global().async {
-                let (p, _) = self.shortestPath(source: pathNodes[i], destination: pathNodes[i + 1])
+                let (p, _) = self.shortestPath(source: path[i], destination: path[i + 1])
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DrawPath"), object: p)
                 print("путь \(i) построен")
                 DispatchQueue.main.async {
@@ -67,8 +104,6 @@ extension RoadGraph {
         dispatchGroup.notify(queue: DispatchQueue.global()) {
             print("TSP solved")
         }
-        
     }
-    
     
 }

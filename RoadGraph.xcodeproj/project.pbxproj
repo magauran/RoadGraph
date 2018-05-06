@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		02B3C264629A0C2B3C83AB15 /* Pods_RoadGraph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68193BFBBD18CADC2C9577C /* Pods_RoadGraph.framework */; };
 		8A45402A20AC839000E17B0A /* RoadGraph+TSP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A45402920AC839000E17B0A /* RoadGraph+TSP.swift */; };
+		8A45402D20AC8C2D00E17B0A /* GeneticAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A45402C20AC8C2D00E17B0A /* GeneticAlgorithm.swift */; };
+		8A45402F20AC8C6100E17B0A /* Array+Shuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A45402E20AC8C6100E17B0A /* Array+Shuffle.swift */; };
+		8A45403120AC8D5900E17B0A /* Way.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A45403020AC8D5900E17B0A /* Way.swift */; };
 		8A762CBC2059A30800A4C384 /* tagil.poly in Resources */ = {isa = PBXBuildFile; fileRef = 8A762CBB2059A30800A4C384 /* tagil.poly */; };
 		8A762CC22059ABBB00A4C384 /* graph.html in Resources */ = {isa = PBXBuildFile; fileRef = 8A762CC12059ABBA00A4C384 /* graph.html */; };
 		8A8F1C862054846900FBF980 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C852054846900FBF980 /* AppDelegate.swift */; };
@@ -42,6 +45,9 @@
 /* Begin PBXFileReference section */
 		53BB601C38F75DEF53ED54EF /* Pods-RoadGraph.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadGraph.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadGraph/Pods-RoadGraph.release.xcconfig"; sourceTree = "<group>"; };
 		8A45402920AC839000E17B0A /* RoadGraph+TSP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoadGraph+TSP.swift"; sourceTree = "<group>"; };
+		8A45402C20AC8C2D00E17B0A /* GeneticAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticAlgorithm.swift; sourceTree = "<group>"; };
+		8A45402E20AC8C6100E17B0A /* Array+Shuffle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Shuffle.swift"; sourceTree = "<group>"; };
+		8A45403020AC8D5900E17B0A /* Way.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Way.swift; sourceTree = "<group>"; };
 		8A762CBB2059A30800A4C384 /* tagil.poly */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tagil.poly; sourceTree = "<group>"; };
 		8A762CC12059ABBA00A4C384 /* graph.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = graph.html; sourceTree = "<group>"; };
 		8A8F1C822054846900FBF980 /* RoadGraph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadGraph.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +103,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8A45402B20AC8BFB00E17B0A /* Algorithms */ = {
+			isa = PBXGroup;
+			children = (
+				8AC646812078C8D000313496 /* RoadGraph+ShortestPath.swift */,
+				8A45402920AC839000E17B0A /* RoadGraph+TSP.swift */,
+				8A45402C20AC8C2D00E17B0A /* GeneticAlgorithm.swift */,
+			);
+			path = Algorithms;
+			sourceTree = "<group>";
+		};
 		8A8F1C792054846900FBF980 = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +136,7 @@
 			children = (
 				8AC22B672057CF360047CE72 /* Application */,
 				8AC22B642057CD430047CE72 /* Models */,
+				8A45402B20AC8BFB00E17B0A /* Algorithms */,
 				8AF6A86F2076AA2200C07CA6 /* Views */,
 				8AC22B662057CEE60047CE72 /* Controllers */,
 				8AC22B652057CEDC0047CE72 /* Helpers */,
@@ -133,13 +150,12 @@
 				8A8F1CA520553B6900FBF980 /* RoadGraph.swift */,
 				8A8F1C952054848700FBF980 /* OSM.swift */,
 				8A8F1C992054849300FBF980 /* OSMTaggable.swift */,
-				8AC646812078C8D000313496 /* RoadGraph+ShortestPath.swift */,
-				8A45402920AC839000E17B0A /* RoadGraph+TSP.swift */,
 				8A8F1C9B2054849700FBF980 /* OSMWay.swift */,
 				8A8F1C972054848D00FBF980 /* OSMNode.swift */,
 				8AC22B6F2057DCE00047CE72 /* OSMBounds.swift */,
 				8A8F1CA720553C4200FBF980 /* Edge.swift */,
 				8A8F1C9F2054A4F600FBF980 /* Coordinate.swift */,
+				8A45403020AC8D5900E17B0A /* Way.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -152,6 +168,7 @@
 				8AAAC791205D6C4F00A7A10D /* Dictionary+Contains.swift */,
 				8AC646832078D3DE00313496 /* PriorityQueue.swift */,
 				8AC22B712057EB850047CE72 /* CGPoint+BinaryOperations.swift */,
+				8A45402E20AC8C6100E17B0A /* Array+Shuffle.swift */,
 				8ABD858D2076C60E007404BD /* NSView+Constraints.swift */,
 				8AC22B6220571D930047CE72 /* Constants.swift */,
 			);
@@ -357,11 +374,13 @@
 				8ABD858E2076C60E007404BD /* NSView+Constraints.swift in Sources */,
 				8AC646842078D3DE00313496 /* PriorityQueue.swift in Sources */,
 				8A8F1C982054848D00FBF980 /* OSMNode.swift in Sources */,
+				8A45402D20AC8C2D00E17B0A /* GeneticAlgorithm.swift in Sources */,
 				8AC22B61205708C50047CE72 /* SVG.swift in Sources */,
 				8AAAC792205D6C4F00A7A10D /* Dictionary+Contains.swift in Sources */,
 				8A8F1CA620553B6900FBF980 /* RoadGraph.swift in Sources */,
 				8A8F1CA02054A4F600FBF980 /* Coordinate.swift in Sources */,
 				8A8F1C882054846900FBF980 /* ViewController.swift in Sources */,
+				8A45402F20AC8C6100E17B0A /* Array+Shuffle.swift in Sources */,
 				8A8F1C862054846900FBF980 /* AppDelegate.swift in Sources */,
 				8AC22B722057EB850047CE72 /* CGPoint+BinaryOperations.swift in Sources */,
 				8AC22B692057CF980047CE72 /* CSV.swift in Sources */,
@@ -371,6 +390,7 @@
 				8A45402A20AC839000E17B0A /* RoadGraph+TSP.swift in Sources */,
 				8AC646822078C8D000313496 /* RoadGraph+ShortestPath.swift in Sources */,
 				8AC22B702057DCE00047CE72 /* OSMBounds.swift in Sources */,
+				8A45403120AC8D5900E17B0A /* Way.swift in Sources */,
 				8A8F1CA820553C4200FBF980 /* Edge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

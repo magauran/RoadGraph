@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Algorithm {
+public enum ShortestPathAlgorithm {
     case Dijkstra
     case AStar
     case Levit
@@ -16,7 +16,7 @@ public enum Algorithm {
 
 extension RoadGraph {
     
-    func shortestPath(source: OSMNode, destination: OSMNode, algorithm: Algorithm = .Dijkstra) -> ([OSMNode], Double) {
+    func shortestPath(source: OSMNode, destination: OSMNode, algorithm: ShortestPathAlgorithm = .Dijkstra) -> ([OSMNode], Double) {
         
         switch algorithm {
         case .Dijkstra:
