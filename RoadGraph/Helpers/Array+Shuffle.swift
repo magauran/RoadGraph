@@ -9,9 +9,11 @@
 import Foundation
 
 extension Array {
-    public func shuffle() -> [Element] {
-        return sorted(by: { (_, _) -> Bool in
-            return arc4random() < arc4random()
-        })
+    
+    public mutating func shuffle() {
+        for _ in 0..<self.count / 5 {
+            self.swapAt(Int(arc4random()) % self.count, Int(arc4random()) % self.count)
+        }
     }
+    
 }

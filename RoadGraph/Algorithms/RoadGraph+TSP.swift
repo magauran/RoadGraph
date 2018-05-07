@@ -16,22 +16,20 @@ public enum TSPAlgorithm {
 extension RoadGraph {
     
     
-    func solveTSP(nodes: [OSMNode], algorithm: TSPAlgorithm = .Genetic) {
-        
-        var pathNodes = [OSMNode]()
+    func solveTSP(nodes: [OSMNode], algorithm: TSPAlgorithm = .NearestNeighbor) {
         
         let lengths = calculateLengths(nodes: nodes)
        
         switch algorithm {
         case .NearestNeighbor:
-            pathNodes = nearestNeighbor(nodes: nodes, lengths: lengths)
-            drawPath(path: pathNodes)
+            let route = NNAlgorithm.nearestNeighbor(nodes: nodes, lengths: lengths)
+            drawPath(path: route)
             break
         case .Genetic:
             let genetic = GeneticAlgorithm(withCities: nodes, lengths: lengths)
             genetic.onNewGeneration = {
                 (route, generation) in
-                if generation == 50 {
+                if generation == 300 {
                     genetic.stopEvolution()
                     self.drawPath(path: route)
                 }
@@ -65,50 +63,6 @@ extension RoadGraph {
             userDefaults.synchronize()
         }
         return lengths
-    }
-    
-    private func nearestNeighbor(nodes: [OSMNode], lengths: [[Double]]) -> [OSMNode] {
-        var path = [Int]()
-        var lengths = lengths
-        path.append(0)
-        while path.count != nodes.count {
-            let min = lengths[path.last!].min()!
-            let indexOfMin = Int(lengths[path.last!].index(of: min)!)
-            for h in 0..<lengths.count {
-                lengths[path.last!][h] = Double.infinity
-                lengths[h][path.last!] = Double.infinity
-            }
-            
-            path.append(indexOfMin)
-        }
-        path.append(0)
-        
-        var pathNodes = [OSMNode]()
-        for i in path {
-            pathNodes.append(nodes[i])
-        }
-        return pathNodes
-    }
-    
-    private func drawPath(path: [OSMNode]) {
-        let dispatchGroup = DispatchGroup()
-        
-        for i in 0..<path.count - 1 {
-            dispatchGroup.enter()
-            DispatchQueue.global().async {
-                let (p, _) = self.shortestPath(source: path[i], destination: path[i + 1])
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DrawPath"), object: p)
-                print("путь \(i) построен")
-                DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshWebView"), object: nil)
-                }
-                dispatchGroup.leave()
-            }
-        }
-        
-        dispatchGroup.notify(queue: DispatchQueue.global()) {
-            print("TSP solved")
-        }
     }
     
     private func drawPath(path: Way) {

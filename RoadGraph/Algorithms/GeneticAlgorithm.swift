@@ -9,8 +9,8 @@
 import Foundation
 
 class GeneticAlgorithm {
-    var populationSize = 500
-    let mutationProbability = 0.03
+    var populationSize = 1000
+    let mutationProbability = 0.1
     
     let nodes: [OSMNode]
     let lengths: [[Double]]
@@ -27,7 +27,9 @@ class GeneticAlgorithm {
     private func randomPopulation(fromNodes: [OSMNode]) -> [Way] {
         var result: [Way] = []
         for _ in 0..<populationSize {
-            let randomCities = fromNodes.shuffle()
+            var randomCities = NNAlgorithm.nearestNeighbor(nodes: fromNodes, lengths: self.lengths).nodes
+            randomCities.shuffle()
+            randomCities.removeLast()
             var shuffledLengths = Array(repeating: Array(repeating: Double.infinity, count: lengths.count), count: lengths.count);
             for i in 0..<lengths.count - 1 {
                 for j in i + 1..<lengths.count {
@@ -43,6 +45,7 @@ class GeneticAlgorithm {
                     dist += shuffledLengths[i][j]
                 }
             }
+            
             result.append(Way(nodes: randomCities, distance: dist))
         }
         return result
@@ -90,7 +93,7 @@ class GeneticAlgorithm {
     private func getParent(fromGeneration generation: [Way], with totalDistance: Double) -> Way? {
         let fitness = Double(arc4random()) / Double(UINT32_MAX)
         
-        var currentFitness: CGFloat = 0.0
+        var currentFitness: Double = 0.0
         var result: Way?
         for route in generation {
             if currentFitness <= fitness {
@@ -104,18 +107,18 @@ class GeneticAlgorithm {
     
     private func produceOffspring(firstParent: Way, secondParent: Way) -> Way {
         let slice: Int = Int(arc4random_uniform(UInt32(firstParent.nodes.count)))
-        var cities: [OSMNode] = Array(firstParent.nodes[0..<slice])
+        var nodes: [OSMNode] = Array(firstParent.nodes[0..<slice])
         
         var idx = slice
-        while cities.count < secondParent.nodes.count {
-            let city = secondParent.nodes[idx]
-            if cities.contains(city) == false {
-                cities.append(city)
+        while nodes.count < secondParent.nodes.count {
+            let node = secondParent.nodes[idx]
+            if nodes.contains(node) == false {
+                nodes.append(node)
             }
             idx = (idx + 1) % secondParent.nodes.count
         }
         
-        return Way(nodes: cities)
+        return Way(nodes: nodes)
     }
     
     private func mutate(child: Way) -> Way {
