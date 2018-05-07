@@ -56,6 +56,12 @@ class SVG {
         self.svgString += "<circle cx=\"\(centerPoint.x)\" cy=\"\(centerPoint.y)\" r=\"\(radius)\" fill=\"\(color)\"/>\n"
     }
     
+    public func drawCircleWithNumber(center: CGPoint, radius: CGFloat, color: String = "green", number: Int, numberColor: String = "white") {
+        let centerPoint = convertCoordinate(initialPoint: center, initialRect: sourceRect, resultRect: imageRect)
+        self.svgString += "<circle cx=\"\(centerPoint.x)\" cy=\"\(centerPoint.y)\" r=\"\(radius)\" fill=\"\(color)\"/>\n"
+        self.svgString += "<text x=\"\(centerPoint.x - (number >= 10 ? 3.3 : 1.7))\" y=\"\(centerPoint.y + 2.2)\" fill=\"\(numberColor)\" font-size=\"6\"\">\(number)</text>\n"
+    }
+    
     func convertCoordinate(initialPoint: CGPoint, initialRect: CGRect, resultRect: CGRect) -> CGPoint {
         let x = (initialPoint.x / initialRect.width) * resultRect.width
         let y = (initialPoint.y / initialRect.height) * resultRect.height

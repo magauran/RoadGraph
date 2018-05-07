@@ -65,7 +65,7 @@ extension RoadGraph {
         return lengths
     }
     
-    private func drawPath(path: Way) {
+    private func drawPath(path: Way) { // TODO: controller?
         let dispatchGroup = DispatchGroup()
         
         for i in 0..<path.nodes.count - 1 {
@@ -83,6 +83,9 @@ extension RoadGraph {
         
         dispatchGroup.notify(queue: DispatchQueue.global()) {
             print("TSP solved")
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "EnumeratePath"), object: path)
+            }
         }
     }
     

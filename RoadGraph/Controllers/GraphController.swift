@@ -18,6 +18,7 @@ class GraphController {
         self.graph = graph
         
         NotificationCenter.default.addObserver(self, selector: #selector(drawPath(with:)), name: NSNotification.Name(rawValue: "DrawPath"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(enumeratePath(with:)), name: NSNotification.Name(rawValue: "EnumeratePath"), object: nil)
         
     }
     
@@ -49,6 +50,7 @@ class GraphController {
     }
     
     public func addPlace(_ place: Coordinate) {
+        // TODO: extract function
         let point1 = Coordinate(latitude: self.graph.bounds.minLat, longitude: self.graph.bounds.minLon).cartesianCoordinate
         svg.drawCircle(center: CGPoint(x: place.cartesianCoordinate.x - point1.x,
                                        y: sourceRect.height - place.cartesianCoordinate.y + point1.y))
@@ -92,6 +94,18 @@ class GraphController {
                          color: "#FF1088")
         }
         svg.saveSVGToHTMLFile()
+    }
+    
+    @objc private func enumeratePath(with notification: Notification) {
+        let point1 = Coordinate(latitude: self.graph.bounds.minLat, longitude: self.graph.bounds.minLon).cartesianCoordinate
+        if let path = notification.object as? Way {
+            for number in 0..<path.nodes.count {
+                let point = CGPoint(x: path.nodes[number].location.cartesianCoordinate.x - point1.x, y: sourceRect.height - path.nodes[number].location.cartesianCoordinate.y + point1.y)
+                svg.drawCircleWithNumber(center: point, radius: 5.0, number: number)
+            }
+            svg.saveSVGToHTMLFile()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshWebView"), object: nil)
+        }
     }
     
 }
