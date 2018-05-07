@@ -33,16 +33,14 @@ extension RoadGraph {
         var distances = Dictionary<OSMNode, Double>()
         var previous = Dictionary<OSMNode, OSMNode>()
         
-        var queue = PriorityQueue<OSMNode>(order: { (lhs, rhs) -> Bool in
-            return (distances[lhs] ?? Double.infinity) > (distances[rhs] ?? Double.infinity)
-        })
-        
-        distances[source] = 0.0
-        for (_, node) in self.nodes {
-            queue.push(node)
+        var queue = PriorityQueue([(node: source, priority: 0)]) {
+            return $0.priority < $1.priority
         }
         
-        while let node = queue.pop() {
+        distances[source] = 0.0
+        
+        while !queue.isEmpty {
+            let node = queue.dequeue().node
             //Check if this node is reachable based on data
             guard let distance = distances[node], distance < Double.infinity else { continue }
             //For every neighbor
@@ -52,7 +50,7 @@ extension RoadGraph {
                 if (distances[neighbor] ?? Double.infinity) > distance {
                     distances[neighbor] = distance
                     previous[neighbor] = node
-                    queue.push(neighbor)
+                    queue.enqueue((node: neighbor, priority: Int(distance)))
                 }
             }
         }
@@ -77,17 +75,16 @@ extension RoadGraph {
     private func aStar(source: OSMNode, destination: OSMNode) -> ([OSMNode], Double) {
         var distances = Dictionary<OSMNode, Double>()
         var previous = Dictionary<OSMNode, OSMNode>()
-        var queue = PriorityQueue<OSMNode>(order: { (lhs, rhs) -> Bool in
-            return (distances[lhs] ?? Double.infinity) > (distances[rhs] ?? Double.infinity)
-        })
         
-        for (_, node) in self.nodes {
-            queue.push(node)
+        var queue = PriorityQueue([(node: source, priority: 0)]) {
+            return $0.priority < $1.priority
         }
+        
         distances[source] = 0
         var nodesSearched: Int = 0
         
-        while let node = queue.pop() {
+        while !queue.isEmpty {
+            let node = queue.dequeue().node
             nodesSearched += 1
             guard let distance = distances[node], distance < Double.infinity else { continue }
             
@@ -97,11 +94,10 @@ extension RoadGraph {
             
             for neighbor in node.adjacent {
                 let distance = distance + node.location.distance(to: neighbor.location)
-                //If the new distance is less than the existing distance, update the distance and previous entry
                 if (distances[neighbor] ?? Double.infinity) > distance {
                     distances[neighbor] = distance
                     previous[neighbor] = node
-                    queue.push(neighbor)
+                    queue.enqueue((node: neighbor, priority: Int(distance + heuristicFunction(from: destination, to: neighbor))))
                 }
             }
         }
@@ -130,16 +126,14 @@ extension RoadGraph {
         var previous = Dictionary<OSMNode, OSMNode>()
         var status = Dictionary<OSMNode, Status>()
         
-        var queue = PriorityQueue<OSMNode>(order: { (lhs, rhs) -> Bool in
-            return (distances[lhs] ?? Double.infinity) > (distances[rhs] ?? Double.infinity)
-        })
-        
-        distances[source] = 0.0
-        for (_, node) in self.nodes {
-            queue.push(node)
+        var queue = PriorityQueue([(node: source, priority: 0)]) {
+            return $0.priority < $1.priority
         }
         
-        while let node = queue.pop() {
+        distances[source] = 0.0
+        
+        while !queue.isEmpty {
+            let node = queue.dequeue().node
             //Check if this node is reachable based on data
             guard let distance = distances[node], distance < Double.infinity else { continue }
             //For every neighbor
@@ -154,14 +148,14 @@ extension RoadGraph {
                     if (distances[neighbor] ?? Double.infinity) > distance {
                         distances[neighbor] = distance
                         previous[neighbor] = node
-                        queue.push(neighbor)
+                        queue.enqueue((node: neighbor, priority: Int(distance)))
                     }
                     break
                 case .now:
                     if (distances[neighbor] ?? Double.infinity) > distance {
                         distances[neighbor] = distance
                         previous[neighbor] = node
-                        queue.push(neighbor)
+                        queue.enqueue((node: neighbor, priority: Int(distance)))
                     }
                     break
                 default:
@@ -169,14 +163,14 @@ extension RoadGraph {
                         status[neighbor] = .now
                         distances[neighbor] = distance
                         previous[neighbor] = node
-                        queue.push(neighbor)
+                        queue.enqueue((node: neighbor, priority: Int(distance)))
                     }
                     break
                 }
                 if (distances[neighbor] ?? Double.infinity) > distance {
                     distances[neighbor] = distance
                     previous[neighbor] = node
-                    queue.push(neighbor)
+                    queue.enqueue((node: neighbor, priority: Int(distance)))
                 }
                 status[neighbor] = .already
             }

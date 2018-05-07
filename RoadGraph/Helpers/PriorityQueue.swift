@@ -6,155 +6,121 @@
 //  Copyright © 2018 Алексей. All rights reserved.
 //
 
-public struct PriorityQueue<T: Comparable> {
+import Foundation
+
+/// In a priority queue each element is associated with a "priority",
+/// elements are dequeued in highest-priority-first order (the
+/// elements with the highest priority are dequeued first).
+///
+/// The `enqueue` and `dequeue` operations run in O(log(n)) time.
+///
+/// Conforms to `Sequence`, `CustomStringConvertible`.
+public struct PriorityQueue<T> {
     
-    fileprivate var heap = [T]()
-    private let ordered: (T, T) -> Bool
+    // MARK: Creating a Priority Queue
     
-    public init(ascending: Bool = false, startingValues: [T] = []) {
-        self.init(order: ascending ? { $0 > $1 } : { $0 < $1 }, startingValues: startingValues)
+    /// Constructs an empty priority queue using a closure to
+    /// determine the order of a provided pair of elements. The closure that you supply for
+    /// `sortedBy` should return a boolean value to indicate whether one element
+    /// should be before (`true`) or after (`false`) another element using strict weak ordering.
+    /// See http://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings
+    ///
+    /// - parameter sortedBy: Strict weak ordering function checking if the first element has higher priority.
+    public init(sortedBy sortFunction: @escaping (T,T) -> Bool) {
+        self.init([], sortedBy: sortFunction)
     }
     
-    /// Creates a new PriorityQueue with the given ordering.
+    /// Constructs a priority queue from a sequence, such as an array, using a given closure to
+    /// determine the order of a provided pair of elements. The closure that you supply for
+    /// `sortedBy` should return a boolean value to indicate whether one element
+    /// should be before (`true`) or after (`false`) another element using strict weak ordering.
+    /// See http://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings
     ///
-    /// - parameter order: A function that specifies whether its first argument should
-    ///                    come after the second argument in the PriorityQueue.
-    /// - parameter startingValues: An array of elements to initialize the PriorityQueue with.
-    public init(order: @escaping (T, T) -> Bool, startingValues: [T] = []) {
-        ordered = order
-        
-        // Based on "Heap construction" from Sedgewick p 323
-        heap = startingValues
-        var i = heap.count/2 - 1
-        while i >= 0 {
-            sink(i)
-            i -= 1
+    /// - parameter sortedBy: Strict weak ordering function for checking if the first element has higher priority.
+    public init<S: Sequence>(_ elements: S, sortedBy sortFunction: @escaping (T,T) -> Bool) where S.Iterator.Element == T {
+        heap = BinaryHeap<T>(compareFunction: sortFunction)
+        for e in elements {
+            enqueue(e)
         }
     }
     
-    /// How many elements the Priority Queue stores
-    public var count: Int { return heap.count }
+    // MARK: Querying a Priority Queue
     
-    /// true if and only if the Priority Queue is empty
-    public var isEmpty: Bool { return heap.isEmpty }
+    /// Number of elements stored in the priority queue.
+    public var count: Int {
+        return heap.count
+    }
     
-    /// Add a new element onto the Priority Queue. O(lg n)
+    /// Returns `true` if and only if `count == 0`.
+    public var isEmpty: Bool {
+        return count == 0
+    }
+    
+    /// The highest priority element in the queue, or `nil` if the queue is empty.
+    public var first: T? {
+        return heap.max
+    }
+    
+    // MARK: Adding and Removing Elements
+    
+    /// Inserts an element into the priority queue.
+    public mutating func enqueue(_ element: T) {
+        heap.insert(element)
+    }
+    
+    /// Retrieves and removes the highest priority element of the queue.
     ///
-    /// - parameter element: The element to be inserted into the Priority Queue.
-    public mutating func push(_ element: T) {
-        heap.append(element)
-        swim(heap.count - 1)
+    /// - returns: The highest priority element, or `nil` if the queue is empty.
+    @discardableResult
+    public mutating func dequeue() -> T {
+        precondition(!isEmpty, "Queue is empty")
+        return heap.removeMax()!
     }
     
-    /// Remove and return the element with the highest priority (or lowest if ascending). O(lg n)
-    ///
-    /// - returns: The element with the highest priority in the Priority Queue, or nil if the PriorityQueue is empty.
-    public mutating func pop() -> T? {
-        if heap.isEmpty { return nil }
-        if heap.count == 1 { return heap.removeFirst() }  // added for Swift 2 compatibility
-        // so as not to call swap() with two instances of the same location
-        heap.swapAt(0, heap.count - 1)
-        let temp = heap.removeLast()
-        sink(0)
-        
-        return temp
+    /// Removes all the elements from the priority queue, and by default
+    /// clears the underlying storage buffer.
+    public mutating func removeAll(keepingCapacity keep: Bool = false)  {
+        heap.removeAll(keepingCapacity: keep)
     }
     
+    // MARK: Private Properties and Helper Methods
     
-    /// Removes the first occurence of a particular item. Finds it by value comparison using ==. O(n)
-    /// Silently exits if no occurrence found.
-    ///
-    /// - parameter item: The item to remove the first occurrence of.
-    public mutating func remove(_ item: T) {
-        if let index = heap.index(of: item) {
-            heap.swapAt(index, heap.count - 1)
-            heap.removeLast()
-            if index < heap.count { // if we removed the last item, nothing to swim
-                swim(index)
-                sink(index)
-            }
-        }
-    }
-    
-    /// Removes all occurences of a particular item. Finds it by value comparison using ==. O(n)
-    /// Silently exits if no occurrence found.
-    ///
-    /// - parameter item: The item to remove.
-    public mutating func removeAll(_ item: T) {
-        var lastCount = heap.count
-        remove(item)
-        while (heap.count < lastCount) {
-            lastCount = heap.count
-            remove(item)
-        }
-    }
-    
-    /// Get a look at the current highest priority item, without removing it. O(1)
-    ///
-    /// - returns: The element with the highest priority in the PriorityQueue, or nil if the PriorityQueue is empty.
-    public func peek() -> T? {
-        return heap.first
-    }
-    
-    /// Eliminate all of the elements from the Priority Queue.
-    public mutating func clear() {
-        heap.removeAll(keepingCapacity: false)
-    }
-    
-    // Based on example from Sedgewick p 316
-    private mutating func sink(_ index: Int) {
-        var index = index
-        while 2 * index + 1 < heap.count {
-            
-            var j = 2 * index + 1
-            
-            if j < (heap.count - 1) && ordered(heap[j], heap[j + 1]) { j += 1 }
-            if !ordered(heap[index], heap[j]) { break }
-            
-            heap.swapAt(index, j)
-            index = j
-        }
-    }
-    
-    // Based on example from Sedgewick p 316
-    private mutating func swim(_ index: Int) {
-        var index = index
-        while index > 0 && ordered(heap[(index - 1) / 2], heap[index]) {
-            heap.swapAt((index - 1) / 2, index)
-            index = (index - 1) / 2
-        }
-    }
-    
+    /// Internal structure holding the elements.
+    fileprivate var heap : BinaryHeap<T>
 }
 
-// MARK: - GeneratorType
-extension PriorityQueue: IteratorProtocol {
-    public typealias Element = T
-    mutating public func next() -> Element? { return pop() }
-}
-
-// MARK: - SequenceType
 extension PriorityQueue: Sequence {
-    public typealias Iterator = PriorityQueue
-    public func makeIterator() -> Iterator { return self }
-}
-
-// MARK: - CollectionType
-extension PriorityQueue: Collection {
-    public typealias Index = Int
     
-    public var startIndex: Int { return heap.startIndex }
-    public var endIndex: Int { return heap.endIndex }
+    // MARK: Sequence Protocol Conformance
     
-    public subscript(i: Int) -> T { return heap[i] }
-    
-    public func index(after i: PriorityQueue.Index) -> PriorityQueue.Index {
-        return heap.index(after: i)
+    /// Provides for-in loop functionality. Generates elements in no particular order.
+    ///
+    /// - returns: A generator over the elements.
+    public func makeIterator() -> AnyIterator<T> {
+        return heap.makeIterator()
     }
 }
 
-// MARK: - CustomStringConvertible, CustomDebugStringConvertible
-extension PriorityQueue: CustomStringConvertible, CustomDebugStringConvertible {
-    public var description: String { return heap.description }
-    public var debugDescription: String { return heap.debugDescription }
+extension PriorityQueue: CustomStringConvertible {
+    
+    // MARK: CustomStringConvertible Protocol Conformance
+    
+    /// A string containing a suitable textual
+    /// representation of the priority queue.
+    public var description: String {
+        return "[" + map{"\($0)"}.joined(separator: ", ") + "]"
+    }
+}
+
+// MARK: - Operators
+// MARK: Priority Queue Operators
+/// Returns `true` if and only if the priority queues contain the same elements
+/// in the same order.
+/// The underlying elements must conform to the `Equatable` protocol.
+public func ==<U: Equatable>(lhs: PriorityQueue<U>, rhs: PriorityQueue<U>) -> Bool {
+    return lhs.heap == rhs.heap
+}
+
+public func !=<U: Equatable>(lhs: PriorityQueue<U>, rhs: PriorityQueue<U>) -> Bool {
+    return !(lhs==rhs)
 }

@@ -15,6 +15,8 @@
 		8A762CBC2059A30800A4C384 /* tagil.poly in Resources */ = {isa = PBXBuildFile; fileRef = 8A762CBB2059A30800A4C384 /* tagil.poly */; };
 		8A762CC22059ABBB00A4C384 /* graph.html in Resources */ = {isa = PBXBuildFile; fileRef = 8A762CC12059ABBA00A4C384 /* graph.html */; };
 		8A8674AE20AD941000EB8611 /* NNAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8674AD20AD941000EB8611 /* NNAlgorithm.swift */; };
+		8A8674B020AE0CC300EB8611 /* BinaryHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8674AF20AE0CC300EB8611 /* BinaryHeap.swift */; };
+		8A8674B920AE169A00EB8611 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8674B820AE169A00EB8611 /* PriorityQueue.swift */; };
 		8A8F1C862054846900FBF980 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C852054846900FBF980 /* AppDelegate.swift */; };
 		8A8F1C882054846900FBF980 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C872054846900FBF980 /* ViewController.swift */; };
 		8A8F1C8D2054846A00FBF980 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A8F1C8B2054846A00FBF980 /* Main.storyboard */; };
@@ -39,7 +41,6 @@
 		8AC22B722057EB850047CE72 /* CGPoint+BinaryOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC22B712057EB850047CE72 /* CGPoint+BinaryOperations.swift */; };
 		8AC646802078BA7500313496 /* DisablableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC6467F2078BA7500313496 /* DisablableScrollView.swift */; };
 		8AC646822078C8D000313496 /* RoadGraph+ShortestPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC646812078C8D000313496 /* RoadGraph+ShortestPath.swift */; };
-		8AC646842078D3DE00313496 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC646832078D3DE00313496 /* PriorityQueue.swift */; };
 		8AF6A86E2076AA1800C07CA6 /* PlaceTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF6A86D2076AA1800C07CA6 /* PlaceTableCellView.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,8 @@
 		8A762CBB2059A30800A4C384 /* tagil.poly */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tagil.poly; sourceTree = "<group>"; };
 		8A762CC12059ABBA00A4C384 /* graph.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = graph.html; sourceTree = "<group>"; };
 		8A8674AD20AD941000EB8611 /* NNAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNAlgorithm.swift; sourceTree = "<group>"; };
+		8A8674AF20AE0CC300EB8611 /* BinaryHeap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryHeap.swift; sourceTree = "<group>"; };
+		8A8674B820AE169A00EB8611 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 		8A8F1C822054846900FBF980 /* RoadGraph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadGraph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A8F1C852054846900FBF980 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A8F1C872054846900FBF980 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,7 +82,6 @@
 		8AC22B712057EB850047CE72 /* CGPoint+BinaryOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+BinaryOperations.swift"; sourceTree = "<group>"; };
 		8AC6467F2078BA7500313496 /* DisablableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisablableScrollView.swift; sourceTree = "<group>"; };
 		8AC646812078C8D000313496 /* RoadGraph+ShortestPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoadGraph+ShortestPath.swift"; sourceTree = "<group>"; };
-		8AC646832078D3DE00313496 /* PriorityQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 		8AF6A86D2076AA1800C07CA6 /* PlaceTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaceTableCellView.swift; path = RoadGraph/Views/Cells/PlaceTableCellView.swift; sourceTree = SOURCE_ROOT; };
 		A68193BFBBD18CADC2C9577C /* Pods_RoadGraph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoadGraph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93BAB0FC8F3D036FF2B3D2E /* Pods-RoadGraph.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadGraph.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadGraph/Pods-RoadGraph.debug.xcconfig"; sourceTree = "<group>"; };
@@ -169,7 +171,8 @@
 				8AC22B60205708C50047CE72 /* SVG.swift */,
 				8AC22B682057CF980047CE72 /* CSV.swift */,
 				8AAAC791205D6C4F00A7A10D /* Dictionary+Contains.swift */,
-				8AC646832078D3DE00313496 /* PriorityQueue.swift */,
+				8A8674AF20AE0CC300EB8611 /* BinaryHeap.swift */,
+				8A8674B820AE169A00EB8611 /* PriorityQueue.swift */,
 				8AC22B712057EB850047CE72 /* CGPoint+BinaryOperations.swift */,
 				8A45402E20AC8C6100E17B0A /* Array+Shuffle.swift */,
 				8ABD858D2076C60E007404BD /* NSView+Constraints.swift */,
@@ -375,7 +378,6 @@
 				8AC22B6320571D930047CE72 /* Constants.swift in Sources */,
 				8AF6A86E2076AA1800C07CA6 /* PlaceTableCellView.swift in Sources */,
 				8ABD858E2076C60E007404BD /* NSView+Constraints.swift in Sources */,
-				8AC646842078D3DE00313496 /* PriorityQueue.swift in Sources */,
 				8A8F1C982054848D00FBF980 /* OSMNode.swift in Sources */,
 				8A45402D20AC8C2D00E17B0A /* GeneticAlgorithm.swift in Sources */,
 				8AC22B61205708C50047CE72 /* SVG.swift in Sources */,
@@ -385,6 +387,8 @@
 				8A8F1C882054846900FBF980 /* ViewController.swift in Sources */,
 				8A45402F20AC8C6100E17B0A /* Array+Shuffle.swift in Sources */,
 				8A8F1C862054846900FBF980 /* AppDelegate.swift in Sources */,
+				8A8674B020AE0CC300EB8611 /* BinaryHeap.swift in Sources */,
+				8A8674B920AE169A00EB8611 /* PriorityQueue.swift in Sources */,
 				8AC22B722057EB850047CE72 /* CGPoint+BinaryOperations.swift in Sources */,
 				8AC22B692057CF980047CE72 /* CSV.swift in Sources */,
 				8A8F1C9A2054849300FBF980 /* OSMTaggable.swift in Sources */,
