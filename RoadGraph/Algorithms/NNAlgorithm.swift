@@ -30,11 +30,11 @@ class NNAlgorithm {
         var pathNodes = [OSMNode]()
         pathNodes.append(nodes[0])
         for i in 1..<nodes.count {
-            pathNodes.append(nodes[i])
-            distance += l[i][i - 1]
+            pathNodes.append(nodes[path[i]])
+            distance += l[path[i]][path[i - 1]]
         }
         pathNodes.append(nodes[0])
-        // TODO: посчитать расстояние от последнего до первого
+        distance += l[path[0]][path[path.count - 1]]
         return Way(nodes: pathNodes, distance: distance)
     }
     
