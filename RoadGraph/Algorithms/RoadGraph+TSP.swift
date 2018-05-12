@@ -31,6 +31,13 @@ extension RoadGraph {
                 (route, generation) in
                 if generation == 300 {
                     genetic.stopEvolution()
+                    let index1 = Int(route.nodes.index(of: nodes[0])!)
+                    route.nodes <<= index1
+                    route.nodes.append(nodes[0])
+                    
+                    let index2 = Int(route.nodes.index(of: route.nodes.last!)!)
+                    let distance = route.distance + lengths[index1][index2]
+                    print("Distance: \(distance)")
                     self.drawPath(path: route)
                 }
                 DispatchQueue.main.async {

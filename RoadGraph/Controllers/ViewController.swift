@@ -84,7 +84,7 @@ class ViewController: NSViewController {
                 for place in places {
                     if let placeNode = graph.nodes(near: place, radius: 500).first {
                         let time1 = Date()
-                        let path = graph.shortestPath(source: userNode, destination: placeNode, algorithm: .Levit)
+                        let path = graph.shortestPath(source: userNode, destination: placeNode, algorithm: .AStar)
                         let time2 = Date()
                         print("Затрачено: \(time2.timeIntervalSince(time1)) секунд")
                         //let pathStr = path.0.flatMap{"\($0.id)"}.joined(separator: ",")

@@ -26,10 +26,12 @@ class GeneticAlgorithm {
     
     private func randomPopulation(fromNodes: [OSMNode]) -> [Way] {
         var result: [Way] = []
-        for _ in 0..<populationSize {
+        for p in 0..<populationSize {
             var randomCities = NNAlgorithm.nearestNeighbor(nodes: fromNodes, lengths: self.lengths).nodes
-            randomCities.shuffle()
             randomCities.removeLast()
+            if p != 0 {
+                randomCities.shuffle()
+            }
             var shuffledLengths = Array(repeating: Array(repeating: Double.infinity, count: lengths.count), count: lengths.count);
             for i in 0..<lengths.count - 1 {
                 for j in i + 1..<lengths.count {
@@ -40,10 +42,8 @@ class GeneticAlgorithm {
                 }
             }
             var dist = 0.0
-            for i in 0..<randomCities.count - 1 {
-                for j in i + 1..<randomCities.count {
-                    dist += shuffledLengths[i][j]
-                }
+            for i in 0..<randomCities.count - 2 {
+                dist += shuffledLengths[i][i + 1]
             }
             
             result.append(Way(nodes: randomCities, distance: dist))
@@ -59,7 +59,7 @@ class GeneticAlgorithm {
         DispatchQueue.global().async {
             while self.evolving{
                 
-                let currentTotalDistance = self.population.reduce(0.0, { $0 + $1.distance() })
+                let currentTotalDistance = self.population.reduce(0.0, { $0 + $1.distance })
                 let sortByFitnessDESC: (Way, Way) -> Bool = { $0.fitness(with: currentTotalDistance) > $1.fitness(with: currentTotalDistance) }
                 let currentGeneration = self.population.sorted(by: sortByFitnessDESC)
                 
@@ -107,31 +107,41 @@ class GeneticAlgorithm {
     
     private func produceOffspring(firstParent: Way, secondParent: Way) -> Way {
         let slice: Int = Int(arc4random_uniform(UInt32(firstParent.nodes.count)))
-        var nodes: [OSMNode] = Array(firstParent.nodes[0..<slice])
+        var offspringNodes: [OSMNode] = Array(firstParent.nodes[0..<slice])
         
         var idx = slice
-        while nodes.count < secondParent.nodes.count {
+        while offspringNodes.count < secondParent.nodes.count {
             let node = secondParent.nodes[idx]
-            if nodes.contains(node) == false {
-                nodes.append(node)
+            if offspringNodes.contains(node) == false {
+                offspringNodes.append(node)
             }
             idx = (idx + 1) % secondParent.nodes.count
         }
         
-        return Way(nodes: nodes)
+        
+        
+        return Way(nodes: offspringNodes)
     }
     
     private func mutate(child: Way) -> Way {
+        
         if self.mutationProbability >= Double(Double(arc4random()) / Double(UINT32_MAX)) {
             let firstIdx = Int(arc4random_uniform(UInt32(child.nodes.count)))
             let secondIdx = Int(arc4random_uniform(UInt32(child.nodes.count)))
-            var cities = child.nodes
-            cities.swapAt(firstIdx, secondIdx)
+            var nodes = child.nodes
+            nodes.swapAt(firstIdx, secondIdx)
             
-            return Way(nodes: cities)
+            child.nodes = nodes
         }
         
-        return child
+        var dist = 0.0
+        for i in 0..<nodes.count - 2 {
+            let index1 = self.nodes.index(of: child.nodes[i])!
+            let index2 = self.nodes.index(of: child.nodes[i + 1])!
+            dist += self.lengths[index1][index2]
+        }
+        
+        return Way(nodes: child.nodes, distance: dist)
     }
 }
 

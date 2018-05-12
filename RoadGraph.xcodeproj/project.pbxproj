@@ -17,6 +17,7 @@
 		8A8674AE20AD941000EB8611 /* NNAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8674AD20AD941000EB8611 /* NNAlgorithm.swift */; };
 		8A8674B020AE0CC300EB8611 /* BinaryHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8674AF20AE0CC300EB8611 /* BinaryHeap.swift */; };
 		8A8674B920AE169A00EB8611 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8674B820AE169A00EB8611 /* PriorityQueue.swift */; };
+		8A8674BB20AE395600EB8611 /* Array+Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8674BA20AE395600EB8611 /* Array+Shift.swift */; };
 		8A8F1C862054846900FBF980 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C852054846900FBF980 /* AppDelegate.swift */; };
 		8A8F1C882054846900FBF980 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C872054846900FBF980 /* ViewController.swift */; };
 		8A8F1C8D2054846A00FBF980 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A8F1C8B2054846A00FBF980 /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 		8A8674AD20AD941000EB8611 /* NNAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNAlgorithm.swift; sourceTree = "<group>"; };
 		8A8674AF20AE0CC300EB8611 /* BinaryHeap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryHeap.swift; sourceTree = "<group>"; };
 		8A8674B820AE169A00EB8611 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
+		8A8674BA20AE395600EB8611 /* Array+Shift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Shift.swift"; sourceTree = "<group>"; };
 		8A8F1C822054846900FBF980 /* RoadGraph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadGraph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A8F1C852054846900FBF980 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A8F1C872054846900FBF980 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				8AC22B712057EB850047CE72 /* CGPoint+BinaryOperations.swift */,
 				8A45402E20AC8C6100E17B0A /* Array+Shuffle.swift */,
 				8ABD858D2076C60E007404BD /* NSView+Constraints.swift */,
+				8A8674BA20AE395600EB8611 /* Array+Shift.swift */,
 				8AC22B6220571D930047CE72 /* Constants.swift */,
 			);
 			path = Helpers;
@@ -389,6 +392,7 @@
 				8A8F1C862054846900FBF980 /* AppDelegate.swift in Sources */,
 				8A8674B020AE0CC300EB8611 /* BinaryHeap.swift in Sources */,
 				8A8674B920AE169A00EB8611 /* PriorityQueue.swift in Sources */,
+				8A8674BB20AE395600EB8611 /* Array+Shift.swift in Sources */,
 				8AC22B722057EB850047CE72 /* CGPoint+BinaryOperations.swift in Sources */,
 				8AC22B692057CF980047CE72 /* CSV.swift in Sources */,
 				8A8F1C9A2054849300FBF980 /* OSMTaggable.swift in Sources */,

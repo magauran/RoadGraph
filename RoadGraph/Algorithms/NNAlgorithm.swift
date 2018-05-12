@@ -24,7 +24,6 @@ class NNAlgorithm {
             
             path.append(indexOfMin)
         }
-        path.append(0)
         
         var distance = 0.0
         var pathNodes = [OSMNode]()
