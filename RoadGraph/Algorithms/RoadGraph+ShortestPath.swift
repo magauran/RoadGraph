@@ -14,6 +14,7 @@ public enum ShortestPathAlgorithm {
     case Levit
 }
 
+
 extension RoadGraph {
     
     func shortestPath(source: OSMNode, destination: OSMNode, algorithm: ShortestPathAlgorithm = .Dijkstra) -> ([OSMNode], Double) {
@@ -22,7 +23,7 @@ extension RoadGraph {
         case .Dijkstra:
             return dijkstra(source: source, destination: destination)
         case .AStar:
-            return aStar(source: source, destination: destination)
+            return aStar(source: source, destination: destination, heuristic: .Chebyshev)
         case .Levit:
             return levit(source: source, destination: destination)
         }
@@ -66,13 +67,8 @@ extension RoadGraph {
         shortestPath.append(prev)
         return (shortestPath, length)
     }
-   
     
-    private func heuristicFunction(from: OSMNode, to: OSMNode) -> Double {
-        return Double(sqrt(pow((from.location.cartesianCoordinate.x - to.location.cartesianCoordinate.x), 2) + pow((from.location.cartesianCoordinate.y - to.location.cartesianCoordinate.y), 2)))
-    }
-    
-    private func aStar(source: OSMNode, destination: OSMNode) -> ([OSMNode], Double) {
+    private func aStar(source: OSMNode, destination: OSMNode, heuristic: Heuristic) -> ([OSMNode], Double) {
         var distances = Dictionary<OSMNode, Double>()
         var previous = Dictionary<OSMNode, OSMNode>()
         
@@ -97,7 +93,7 @@ extension RoadGraph {
                 if (distances[neighbor] ?? Double.infinity) > distance {
                     distances[neighbor] = distance
                     previous[neighbor] = node
-                    queue.enqueue((node: neighbor, priority: Int(distance + heuristicFunction(from: destination, to: neighbor))))
+                    queue.enqueue((node: neighbor, priority: Int(distance + heuristic.distance(from: destination, to: neighbor))))
                 }
             }
         }

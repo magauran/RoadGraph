@@ -18,6 +18,8 @@
 		8A8674B020AE0CC300EB8611 /* BinaryHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8674AF20AE0CC300EB8611 /* BinaryHeap.swift */; };
 		8A8674B920AE169A00EB8611 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8674B820AE169A00EB8611 /* PriorityQueue.swift */; };
 		8A8674BB20AE395600EB8611 /* Array+Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8674BA20AE395600EB8611 /* Array+Shift.swift */; };
+		8A8674BD20AE623100EB8611 /* Heuristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8674BC20AE623100EB8611 /* Heuristic.swift */; };
+		8A8674BF20AE64DA00EB8611 /* ExponentiationOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8674BE20AE64DA00EB8611 /* ExponentiationOperator.swift */; };
 		8A8F1C862054846900FBF980 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C852054846900FBF980 /* AppDelegate.swift */; };
 		8A8F1C882054846900FBF980 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C872054846900FBF980 /* ViewController.swift */; };
 		8A8F1C8D2054846A00FBF980 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A8F1C8B2054846A00FBF980 /* Main.storyboard */; };
@@ -57,6 +59,8 @@
 		8A8674AF20AE0CC300EB8611 /* BinaryHeap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryHeap.swift; sourceTree = "<group>"; };
 		8A8674B820AE169A00EB8611 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 		8A8674BA20AE395600EB8611 /* Array+Shift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Shift.swift"; sourceTree = "<group>"; };
+		8A8674BC20AE623100EB8611 /* Heuristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heuristic.swift; sourceTree = "<group>"; };
+		8A8674BE20AE64DA00EB8611 /* ExponentiationOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponentiationOperator.swift; sourceTree = "<group>"; };
 		8A8F1C822054846900FBF980 /* RoadGraph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadGraph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A8F1C852054846900FBF980 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A8F1C872054846900FBF980 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				8AC646812078C8D000313496 /* RoadGraph+ShortestPath.swift */,
+				8A8674BC20AE623100EB8611 /* Heuristic.swift */,
 				8A45402920AC839000E17B0A /* RoadGraph+TSP.swift */,
 				8A45402C20AC8C2D00E17B0A /* GeneticAlgorithm.swift */,
 				8A8674AD20AD941000EB8611 /* NNAlgorithm.swift */,
@@ -176,6 +181,7 @@
 				8A8674AF20AE0CC300EB8611 /* BinaryHeap.swift */,
 				8A8674B820AE169A00EB8611 /* PriorityQueue.swift */,
 				8AC22B712057EB850047CE72 /* CGPoint+BinaryOperations.swift */,
+				8A8674BE20AE64DA00EB8611 /* ExponentiationOperator.swift */,
 				8A45402E20AC8C6100E17B0A /* Array+Shuffle.swift */,
 				8ABD858D2076C60E007404BD /* NSView+Constraints.swift */,
 				8A8674BA20AE395600EB8611 /* Array+Shift.swift */,
@@ -380,6 +386,7 @@
 				8AC646802078BA7500313496 /* DisablableScrollView.swift in Sources */,
 				8AC22B6320571D930047CE72 /* Constants.swift in Sources */,
 				8AF6A86E2076AA1800C07CA6 /* PlaceTableCellView.swift in Sources */,
+				8A8674BF20AE64DA00EB8611 /* ExponentiationOperator.swift in Sources */,
 				8ABD858E2076C60E007404BD /* NSView+Constraints.swift in Sources */,
 				8A8F1C982054848D00FBF980 /* OSMNode.swift in Sources */,
 				8A45402D20AC8C2D00E17B0A /* GeneticAlgorithm.swift in Sources */,
@@ -397,6 +404,7 @@
 				8AC22B692057CF980047CE72 /* CSV.swift in Sources */,
 				8A8F1C9A2054849300FBF980 /* OSMTaggable.swift in Sources */,
 				8A8F1C9C2054849800FBF980 /* OSMWay.swift in Sources */,
+				8A8674BD20AE623100EB8611 /* Heuristic.swift in Sources */,
 				8AC22B6E2057D4B50047CE72 /* GraphController.swift in Sources */,
 				8A45402A20AC839000E17B0A /* RoadGraph+TSP.swift in Sources */,
 				8AC646822078C8D000313496 /* RoadGraph+ShortestPath.swift in Sources */,
