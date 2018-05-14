@@ -53,21 +53,12 @@ extension RoadGraph {
     
     private func calculateLengths(nodes: [OSMNode]) -> [[Double]] {
         var lengths = Array(repeating: Array(repeating: Double.infinity, count: nodes.count), count: nodes.count)
-        let userDefaults = UserDefaults.standard
-        if let decoded  = userDefaults.object(forKey: "lengths") as? Data {
-            lengths = (NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [[Double]])
-        } else {
-            for i in 0..<nodes.count - 1 {
-                for j in i + 1..<nodes.count {
-                    let length = self.shortestPath(source: nodes[i], destination: nodes[j], algorithm: .AStar).1
-                    lengths[i][j] = length
-                    lengths[j][i] = length
-                }
+        for i in 0..<nodes.count - 1 {
+            for j in i + 1..<nodes.count {
+                let length = self.shortestPath(source: nodes[i], destination: nodes[j], algorithm: .AStar).1
+                lengths[i][j] = length
+                lengths[j][i] = length
             }
-            
-            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: lengths)
-            userDefaults.set(encodedData, forKey: "lengths")
-            userDefaults.synchronize()
         }
         return lengths
     }
