@@ -29,7 +29,7 @@ extension RoadGraph {
             let genetic = GeneticAlgorithm(withCities: nodes, lengths: lengths)
             genetic.onNewGeneration = {
                 (route, generation) in
-                if generation == 300 {
+                if generation == 30 {
                     genetic.stopEvolution()
                     let index1 = Int(route.nodes.index(of: nodes[0])!)
                     route.nodes <<= index1
@@ -66,10 +66,13 @@ extension RoadGraph {
     private func drawPath(path: Way) { // TODO: controller?
         let dispatchGroup = DispatchGroup()
         
+        var ways = [[OSMNode]]()
         for i in 0..<path.nodes.count - 1 {
             dispatchGroup.enter()
+            
             DispatchQueue.global().async {
                 let (p, _) = self.shortestPath(source: path.nodes[i], destination: path.nodes[i + 1])
+                ways.append(p)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DrawPath"), object: p)
                 print("путь \(i) построен")
                 DispatchQueue.main.async {
@@ -83,6 +86,7 @@ extension RoadGraph {
             print("TSP solved")
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "EnumeratePath"), object: path)
+                CSV.writeShortestWaysToFile(path: "shortestWaysTSP.csv", ways: ways)
             }
         }
     }

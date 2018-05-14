@@ -39,6 +39,16 @@ class CSV {
         }
         
     }
+    
+    class func writeShortestWaysToFile(path: String, ways: [[OSMNode]]) {
+        let csv = try! createCSVWriter(path: path)
+        
+        for way in ways {
+            let nodes = way.map{"\($0.id)"}
+            try! csv.write(row: nodes)
+            csv.beginNewRow()
+        }
+    }
  
     private class func createCSVWriter(path: String) throws -> CSVWriter  {
         let csvFile = Bundle.main.bundleURL.appendingPathComponent("Contents/Resources/\(path)")

@@ -20,6 +20,8 @@
 		8A8674BB20AE395600EB8611 /* Array+Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8674BA20AE395600EB8611 /* Array+Shift.swift */; };
 		8A8674BD20AE623100EB8611 /* Heuristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8674BC20AE623100EB8611 /* Heuristic.swift */; };
 		8A8674BF20AE64DA00EB8611 /* ExponentiationOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8674BE20AE64DA00EB8611 /* ExponentiationOperator.swift */; };
+		8A8674C120AE933E00EB8611 /* shortestWays.csv in Resources */ = {isa = PBXBuildFile; fileRef = 8A8674C020AE933D00EB8611 /* shortestWays.csv */; };
+		8A8674C320AE95B800EB8611 /* shortestWaysTSP.csv in Resources */ = {isa = PBXBuildFile; fileRef = 8A8674C220AE95B700EB8611 /* shortestWaysTSP.csv */; };
 		8A8F1C862054846900FBF980 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C852054846900FBF980 /* AppDelegate.swift */; };
 		8A8F1C882054846900FBF980 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A8F1C872054846900FBF980 /* ViewController.swift */; };
 		8A8F1C8D2054846A00FBF980 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A8F1C8B2054846A00FBF980 /* Main.storyboard */; };
@@ -61,6 +63,8 @@
 		8A8674BA20AE395600EB8611 /* Array+Shift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Shift.swift"; sourceTree = "<group>"; };
 		8A8674BC20AE623100EB8611 /* Heuristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heuristic.swift; sourceTree = "<group>"; };
 		8A8674BE20AE64DA00EB8611 /* ExponentiationOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExponentiationOperator.swift; sourceTree = "<group>"; };
+		8A8674C020AE933D00EB8611 /* shortestWays.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shortestWays.csv; sourceTree = "<group>"; };
+		8A8674C220AE95B700EB8611 /* shortestWaysTSP.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shortestWaysTSP.csv; sourceTree = "<group>"; };
 		8A8F1C822054846900FBF980 /* RoadGraph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadGraph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A8F1C852054846900FBF980 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A8F1C872054846900FBF980 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +220,8 @@
 				8A762CBB2059A30800A4C384 /* tagil.poly */,
 				8AAAC795205D83C600A7A10D /* adjacencyList.csv */,
 				8AAAC797205D83F100A7A10D /* edgeList.csv */,
+				8A8674C020AE933D00EB8611 /* shortestWays.csv */,
+				8A8674C220AE95B700EB8611 /* shortestWaysTSP.csv */,
 				8AAAC799205D848E00A7A10D /* screenshot.png */,
 				8A762CC12059ABBA00A4C384 /* graph.html */,
 				8A8F1C8B2054846A00FBF980 /* Main.storyboard */,
@@ -319,7 +325,9 @@
 			files = (
 				8AAAC798205D83F100A7A10D /* edgeList.csv in Resources */,
 				8A762CC22059ABBB00A4C384 /* graph.html in Resources */,
+				8A8674C120AE933E00EB8611 /* shortestWays.csv in Resources */,
 				8A762CBC2059A30800A4C384 /* tagil.poly in Resources */,
+				8A8674C320AE95B800EB8611 /* shortestWaysTSP.csv in Resources */,
 				8AAAC796205D83C700A7A10D /* adjacencyList.csv in Resources */,
 				8AC22B6C2057D0F70047CE72 /* Assets.xcassets in Resources */,
 				8AAAC79A205D848E00A7A10D /* screenshot.png in Resources */,

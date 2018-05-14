@@ -81,18 +81,20 @@ class ViewController: NSViewController {
         if isGraphCreated, graph.bounds.contains(point: userCoordinates), !places.isEmpty {
             print("Проложить маршрут от \(userCoordinates) до \(places)")
             if let userNode = graph.nodes(near: userCoordinates, radius: 500).first {
+                var ways = [[OSMNode]]()
                 for place in places {
                     if let placeNode = graph.nodes(near: place, radius: 500).first {
                         let time1 = Date()
                         let path = graph.shortestPath(source: userNode, destination: placeNode, algorithm: .AStar)
                         let time2 = Date()
                         print("Затрачено: \(time2.timeIntervalSince(time1)) секунд")
-                        //let pathStr = path.0.flatMap{"\($0.id)"}.joined(separator: ",")
-                        //print(pathStr) // TODO: save to csv
+                        print("Расстояние: \(path.1)")
+                        ways.append(path.0)
                         self.controller.drawPath(path.0)
                         self.refreshWebViewContents()
                     }
                 }
+                CSV.writeShortestWaysToFile(path: "shortestWays.csv", ways: ways)
             }
         }
         
