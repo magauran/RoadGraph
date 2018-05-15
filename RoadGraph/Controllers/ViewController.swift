@@ -24,6 +24,8 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var placesOutlineView: NSOutlineView!
     
+    @IBOutlet weak var progressIndicator: NSProgressIndicator!
+    
     var graph: RoadGraph!
     var places = [Coordinate]()
     var isGraphCreated = false
@@ -39,6 +41,7 @@ class ViewController: NSViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshWebViewContents), name: NSNotification.Name(rawValue: "RefreshWebView"), object: nil)
         
+        progressIndicator.startAnimation(nil)
         createGraph()
     }
 
@@ -167,6 +170,8 @@ class ViewController: NSViewController {
                     let htmlString = try! String.init(contentsOf: svgUrl)
                     
                     DispatchQueue.main.async {
+                        self.progressIndicator.stopAnimation(nil)
+                        self.progressIndicator.isHidden = true
                         self.webView.loadHTMLString(htmlString, baseURL: nil)
                         self.webView.allowsMagnification = true
                         self.webView.magnification = 7.0
