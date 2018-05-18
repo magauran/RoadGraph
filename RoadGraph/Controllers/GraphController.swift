@@ -53,7 +53,9 @@ class GraphController {
         // TODO: extract function
         let point1 = Coordinate(latitude: self.graph.bounds.minLat, longitude: self.graph.bounds.minLon).cartesianCoordinate
         svg.drawCircle(center: CGPoint(x: place.cartesianCoordinate.x - point1.x,
-                                       y: sourceRect.height - place.cartesianCoordinate.y + point1.y))
+                                       y: sourceRect.height - place.cartesianCoordinate.y + point1.y),
+            radius: 4,
+            color: "green")
         svg.saveSVGToHTMLFile()
     }
     

@@ -689,7 +689,7 @@
                     <window key="window" title="Нижний Тагил" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="590" height="379"/>
+                        <rect key="contentRect" x="84" y="240" width="702" height="467"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
@@ -701,7 +701,7 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-123" y="303"/>
+            <point key="canvasLocation" x="-179" y="346.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -820,10 +820,10 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hgK-sr-VQI">
-                                                <rect key="frame" x="10" y="97" width="180" height="420"/>
+                                                <rect key="frame" x="10" y="60" width="180" height="457"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BCi-y9-NrI">
-                                                        <rect key="frame" x="-2" y="407" width="184" height="13"/>
+                                                        <rect key="frame" x="-2" y="444" width="184" height="13"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Добавить место" id="Hsd-Ns-gud">
                                                             <font key="font" metaFont="systemBold" size="10"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -831,7 +831,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="gj3-OC-pFQ">
-                                                        <rect key="frame" x="0.0" y="359" width="180" height="40"/>
+                                                        <rect key="frame" x="0.0" y="396" width="180" height="40"/>
                                                         <subviews>
                                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hRj-Rq-khS">
                                                                 <rect key="frame" x="48" y="9" width="132" height="22"/>
@@ -866,7 +866,7 @@
                                                         </constraints>
                                                     </customView>
                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hnn-vb-9C3">
-                                                        <rect key="frame" x="0.0" y="311" width="180" height="40"/>
+                                                        <rect key="frame" x="0.0" y="348" width="180" height="40"/>
                                                         <subviews>
                                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Skd-tr-tfA">
                                                                 <rect key="frame" x="50" y="9" width="130" height="22"/>
@@ -901,7 +901,7 @@
                                                         </constraints>
                                                     </customView>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="62o-FZ-r7H">
-                                                        <rect key="frame" x="40" y="275" width="101" height="32"/>
+                                                        <rect key="frame" x="40" y="312" width="101" height="32"/>
                                                         <buttonCell key="cell" type="push" title="Добавить" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KT0-6f-85I">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -910,8 +910,14 @@
                                                             <action selector="addPlace:" target="XfG-lQ-9wD" id="pZB-9Y-S5P"/>
                                                         </connections>
                                                     </button>
+                                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="tsI-oy-Ddv">
+                                                        <rect key="frame" x="9" y="291" width="163" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="HLc-lL-lJ0"/>
+                                                        </constraints>
+                                                    </customView>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eKf-e8-9Zq">
-                                                        <rect key="frame" x="-2" y="261" width="184" height="13"/>
+                                                        <rect key="frame" x="-2" y="270" width="184" height="13"/>
                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Ваше местоположение" id="eOC-k3-VwK">
                                                             <font key="font" metaFont="systemBold" size="10"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -919,7 +925,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="rIc-3r-wp8">
-                                                        <rect key="frame" x="0.0" y="213" width="180" height="40"/>
+                                                        <rect key="frame" x="0.0" y="222" width="180" height="40"/>
                                                         <subviews>
                                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O3v-j3-AyR">
                                                                 <rect key="frame" x="48" y="9" width="132" height="22"/>
@@ -954,7 +960,7 @@
                                                         </constraints>
                                                     </customView>
                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="fU9-kZ-0ZF">
-                                                        <rect key="frame" x="0.0" y="165" width="180" height="40"/>
+                                                        <rect key="frame" x="0.0" y="174" width="180" height="40"/>
                                                         <subviews>
                                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bln-Q7-C3l">
                                                                 <rect key="frame" x="50" y="9" width="130" height="22"/>
@@ -989,7 +995,7 @@
                                                         </constraints>
                                                     </customView>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bhy-N9-0Om">
-                                                        <rect key="frame" x="40" y="129" width="101" height="32"/>
+                                                        <rect key="frame" x="40" y="138" width="101" height="32"/>
                                                         <buttonCell key="cell" type="push" title="Добавить" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JMT-e8-FQR">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -999,13 +1005,13 @@
                                                         </connections>
                                                     </button>
                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="hIU-Ca-DIu">
-                                                        <rect key="frame" x="0.0" y="58" width="180" height="70"/>
+                                                        <rect key="frame" x="0.0" y="87" width="180" height="50"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="70" id="C8e-VO-mGr"/>
+                                                            <constraint firstAttribute="height" constant="50" id="C8e-VO-mGr"/>
                                                         </constraints>
                                                     </customView>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="U2r-W4-28x">
-                                                        <rect key="frame" x="0.0" y="22" width="181" height="32"/>
+                                                        <rect key="frame" x="0.0" y="51" width="181" height="32"/>
                                                         <buttonCell key="cell" type="push" title="Проложить маршруты" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kZi-3b-h6A">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -1015,7 +1021,7 @@
                                                         </connections>
                                                     </button>
                                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mvy-Fc-bOF">
-                                                        <rect key="frame" x="0.0" y="-7" width="181" height="32"/>
+                                                        <rect key="frame" x="0.0" y="22" width="181" height="32"/>
                                                         <buttonCell key="cell" type="push" title="TSP" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="89I-Hg-mjT">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -1024,9 +1030,20 @@
                                                             <action selector="solveTSP:" target="XfG-lQ-9wD" id="Y89-3X-9Aj"/>
                                                         </connections>
                                                     </button>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cok-SO-hCb">
+                                                        <rect key="frame" x="0.0" y="-7" width="181" height="32"/>
+                                                        <buttonCell key="cell" type="push" title="Очистить" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iOC-1M-TOA">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="clearButton:" target="XfG-lQ-9wD" id="TDu-p6-Pbz"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="eKf-e8-9Zq" firstAttribute="leading" secondItem="hgK-sr-VQI" secondAttribute="leading" id="Rla-Uz-0NI"/>
+                                                    <constraint firstItem="cok-SO-hCb" firstAttribute="width" secondItem="Mvy-Fc-bOF" secondAttribute="width" id="ZB6-vF-3Fi"/>
                                                     <constraint firstItem="rIc-3r-wp8" firstAttribute="width" secondItem="hgK-sr-VQI" secondAttribute="width" id="fRz-EX-lNz"/>
                                                     <constraint firstItem="Mvy-Fc-bOF" firstAttribute="width" secondItem="U2r-W4-28x" secondAttribute="width" id="rOr-QM-Rye"/>
                                                     <constraint firstItem="BCi-y9-NrI" firstAttribute="leading" secondItem="hgK-sr-VQI" secondAttribute="leading" id="zoc-Kp-ia2"/>
@@ -1043,8 +1060,12 @@
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
                                                 </visibilityPriorities>
                                                 <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
@@ -1120,6 +1141,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSStopProgressFreestandingTemplate" width="11" height="11"/>
+        <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
     </resources>
 </document>

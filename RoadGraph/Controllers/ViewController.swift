@@ -77,9 +77,11 @@ class ViewController: NSViewController {
     }
     
     @IBAction func getRoutes(_ sender: NSButton) {
-        let userLatitude = userLatitudeTextField.doubleValue
-        let userLongitude = userLongitudeTextField.doubleValue
-        let userCoordinates = Coordinate(latitude: userLatitude, longitude: userLongitude)
+        
+        guard let userCoordinates = currentPlace else {
+            print("No user place")
+            return
+        }
         
         if isGraphCreated, graph.bounds.contains(point: userCoordinates), !places.isEmpty {
             print("Проложить маршрут от \(userCoordinates) до \(places)")
@@ -160,9 +162,9 @@ class ViewController: NSViewController {
                 self.isGraphCreated = true
                 self.controller = GraphController(graph: self.graph)
                 
-                DispatchQueue.global().async {
-                    self.controller.saveEdgeList()
-                }
+//                DispatchQueue.global().async {
+//                    self.controller.saveEdgeList()
+//                }
                 
                 DispatchQueue.global().async {
                     self.controller.visualize()
@@ -182,7 +184,7 @@ class ViewController: NSViewController {
                     }
                 }
                 
-                self.controller.saveAdjacencyList()
+//                self.controller.saveAdjacencyList()
                 
             } else {
                 DispatchQueue.main.async {
@@ -213,6 +215,14 @@ class ViewController: NSViewController {
         }
         
     }
+    
+    @IBAction func clearButton(_ sender: Any) {
+        self.currentPlace = nil
+        self.controller.visualize()
+        self.addDefaultPlaces()
+        self.refreshWebViewContents()
+    }
+    
     
 }
 
